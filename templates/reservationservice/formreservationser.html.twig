@@ -1,0 +1,119 @@
+{% extends 'base2.html.twig'%}
+{% block body %}
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">Book your </span>
+          <h1 class="text-capitalize mb-5 text-lg">Service</h1>
+
+          <!-- <ul class="list-inline breadcumb-nav">
+            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">Book your Seat</a></li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="appoinment section">
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="mt-3">
+                <div class="feature-icon mb-3">
+                    <i class="icofont-support text-lg"></i>
+                </div>
+                <span class="h3">Call for an Emergency Service!</span>
+                <h2 class="text-color mt-3">+84 789 1256 </h2>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+                <h2 class="mb-2 title-color">Service</h2>
+                <style>
+                  .flash-message {
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    background-color: #4CAF50;
+                    color: white;
+                    margin-bottom: 20px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    font-family: Arial, sans-serif;
+                    animation: bounceFadeInOut 2s ease-in-out; /* Add animation */
+                  }
+                
+                  /* Keyframes for bounce fade in and out effect */
+                  @keyframes bounceFadeInOut {
+                    0% {
+                      opacity: 0;
+                      transform: scale(0.5) translateY(-20px);
+                    }
+                    25% {
+                      opacity: 1;
+                      transform: scale(1.1) translateY(0);
+                    }
+                    50% {
+                      opacity: 1;
+                      transform: scale(0.9) translateY(0);
+                    }
+                    75% {
+                      opacity: 1;
+                      transform: scale(1.1) translateY(0);
+                    }
+                    100% {
+                      opacity: 0;
+                      transform: scale(0.5) translateY(-20px);
+                    }
+                  }
+                </style>
+               {% if app.session.flashBag.has('success') %}
+               <div class="flash-message">
+                   {{ app.session.flashBag.get('success')[0] }}
+               </div>
+           {% endif %}
+           
+               
+
+                {{ form_start(f, {'attr': {'class': 'cool-form'}}) }}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name" class="cool-label">Name</label>
+                            {{ form_widget(f.nom,{'attr':{'class':'form-control cool-input','value': app.user.fullname, 'placeholder': 'Enter your name'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="email" class="cool-label">Email</label>
+                            {{ form_widget(f.email,{'attr':{'class':'form-control cool-input','value': app.user.email, 'placeholder': 'Enter your email'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="service" class="cool-label">Service</label>
+                            {{ form_widget(f.idserivce, {'attr': {'class': 'form-control cool-select'}}) }}
+                        </div>
+                    </div>
+
+                   
+                </div>
+                {{form_end(f)}}
+            </div>
+        </div>
+    </div>
+</div>
+
+     {{form_end(f)}}
+</section>
+
+
+
+{% endblock %}

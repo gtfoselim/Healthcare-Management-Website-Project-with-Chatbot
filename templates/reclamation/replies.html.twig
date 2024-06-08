@@ -1,0 +1,29 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Réponses pour la Réclamation {{ reclamation.id }}{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1 class="text-center mb-4">Réponses pour la Réclamation {{ reclamation.id }}</h1>
+    
+    {% if reclamation.replies|length == 0 %}
+      <p class="text-center">Aucune réponse n'a été trouvée pour cette réclamation.</p>
+    {% else %}
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          {% for reply in reclamation.replies %}
+            <div class="card mb-4 shadow">
+              <div class="card-header bg-primary text-white">
+                Réponse {{ loop.index }}
+                <small class="text-white float-end">{{ reply.getResponseDate()|date('d/m/Y H:i') }}</small>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{ reply.getResponseContent() }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

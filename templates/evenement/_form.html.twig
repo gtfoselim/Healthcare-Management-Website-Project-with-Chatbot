@@ -1,0 +1,7 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn" type="submit">
+        <i class="fa-solid fa-floppy-disk" style="color: #4154f1;"></i>{{ button_label|default() }}
+    </button>
+{{ form_end(form) }}

@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Data Tables</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Tables</li>
+        <li class="breadcrumb-item active">Data</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Datatables</h5>
+
+            
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th>
+                    <b>id</b>
+                  </th>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Mail</th>
+                  <th>Contenu</th>
+                  <th>Likes</th>
+                  <th>Dislikes</th>
+                  <th>Submit Date</th>
+                  <th>Id Post</th>
+                  <th>update</th>
+                  <th>del</th>
+                  <!-- <th>NbComments</th> -->
+                  <!-- <th>valid</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in tabbb %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.IdComment}}</td>
+                <td>{{i.NameComment}}</td>
+                <td>{{i.MailComment}}</td>
+                <td>{{i.ContenuComment}}</td>
+                <td>{{i.LikesComment}}</td>
+                <td>{{i.DislikesComment}}</td>
+                <td>{{i.DatecreationComment.format('Y-m-d')}}</td>
+                <td>{{i.IdPost.Id}}</td>
+
+                
+
+                <td><a style="display: inline-block;padding: 6px 12px;margin: 2px;text-decoration: none;border-radius: 4px;color: #fff;background-color: #007bff;"  href="{{path('editcomment',{'id':i.id})}}">Edit</a></td>
+                <td><a style="display: inline-block;padding: 6px 12px;margin: 2px;text-decoration: none;border-radius: 4px;color: #fff;background-color: #dc3545;" href="{{path('deletecomment',{'id':i.id})}}">Delete</a></td>
+                <!-- <td><a style="display: inline-block;padding: 6px 12px;margin: 2px;text-decoration: none;border-radius: 4px;color: #fff;background-color: #28a745;" href="{{path('validpost',{'id':i.id})}}">Valider</a></td> -->
+                
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        </div>
+        </div>
+        </section>
+           
+
+</main>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<script src="{{asset('assets/js/main.js')}}"></script>
+
+{% endblock %}

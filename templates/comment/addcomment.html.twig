@@ -1,0 +1,37 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello CommentController!{% endblock %}
+
+{% block body %}
+<div class="col-lg-12">
+    {{ form_start(commentForm,{attr:{novalidate:'novalidate'}}) }}
+    <form class="comment-form my-5" id="comment-form"  method="post">
+        <h4 class="mb-4">Write a comment</h4>
+        <div class="row">
+            <div class="col-md-6">
+				<div class="form-group">
+					{{ form_widget(commentForm.name_comment, {'attr': {'name': 'name', 'id': 'name', 'type': 'text', 'class': 'form-control'}}) }}
+					{{ form_errors(commentForm.name_comment, {'attr': {'class': 'form-danger'}}) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+					{{ form_widget(commentForm.mail_comment, {'attr': {'name': 'mail', 'id': 'mail', 'type': 'text', 'class': 'form-control'}}) }}
+                    {{ form_errors(commentForm.mail_comment , {'attr': {'class': 'form-danger'}}) }}
+                </div>
+            </div>
+        </div>
+        {{ form_widget(commentForm.contenu_comment, {'type': 'textarea', 'class': 'form-control mb-4', 'placeholder': 'Comment', 'rows': '12'}) }}
+        {{ form_errors(commentForm.contenu_comment, {'attr': {'class': 'form-danger'}}) }}
+        <div style="display: none;">
+            {{ form_widget(commentForm.likes_comment) }}
+            {{ form_widget(commentForm.dislikes_comment) }}
+            {{ form_widget(commentForm.datecreation_comment) }}
+            {{ form_widget(commentForm.id_post) }}
+            {{ form_widget(commentForm.id_comment) }}
+        </div>
+
+        {{ form_end(commentForm) }}
+    </form>
+</div>
+{% endblock %}

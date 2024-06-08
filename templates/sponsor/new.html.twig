@@ -1,0 +1,15 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Sponsor{% endblock %}
+
+{% block body %}
+<div style="margin: 400px;">
+    <h1>Create new Sponsor</h1>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    {{ include('sponsor/_form.html.twig') }}
+
+    <a href="{{ path('app_sponsor_index') }}">back to list</a>
+    </div>
+{% endblock %}

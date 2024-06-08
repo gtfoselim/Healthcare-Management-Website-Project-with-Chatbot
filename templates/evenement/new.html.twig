@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Evenement{% endblock %}
+
+{% block body %}
+
+    <div style="margin: 400px;"> <!-- Adjust margin size as needed -->
+        <h1>Create new Evenement</h1>
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+        {{ include('evenement/_form.html.twig') }}
+        <a href="{{ path('app_evenement_index') }}" class="bi bi-arrow-left-circle"></a>
+    </div>
+
+{% endblock %}

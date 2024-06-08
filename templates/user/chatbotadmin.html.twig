@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <title>Chatbot</title>
+    <style>
+     .chatbot {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px; /* Added padding to the body */
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            height: 100vh; /* Make the body take up the full height of the viewport */
+        }
+    
+    .containerchat {
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left:auto; /* Adjust the left margin as needed */
+        margin-right: auto;
+    }
+    
+    .chat {
+    overflow-y: scroll;
+    max-height: 500px; /* Increase the max-height value to make it bigger */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+   
+}
+    
+    .message {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        display: inline-block;
+        max-width: 70%;
+    }
+    
+    .user-message {
+        background-color: #d6eaf8;
+        align-self: flex-end;
+        text-align: right;
+    }
+    
+    .bot-message {
+        background-color: #f0f0f0;
+        align-self: flex-start;
+        text-align: left;
+    }
+    
+    .response p {
+        margin: 0;
+    }
+    
+    .input-container {
+        display: flex;
+        margin-top: 10px; /* Added margin to separate from the chat container */
+    }
+    
+    .input-container input[type="text"] {
+        flex: 1;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+    
+    .input-container button {
+        padding: 8px 16px;
+        margin-left: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .input-container button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+
+<div class="chatbot">
+    <div class="containerchat">
+    
+        <h1>ChatVST</h1>
+        <div class="chat">
+            {% for turn in chat_history %}
+                {% if turn.role == 'user' %}
+                    <div class="message user-message">{{ turn.message }}</div>
+                {% elseif turn.role == 'bot' %}
+                    <div class="message bot-message">{{ turn.message }}</div>
+                {% endif %}
+            {% endfor %}
+            
+            {# Display wrong question if it exists #}
+            {% if question != '' and response == "I'm sorry, I can only respond to health-related questions at the moment." %}
+                <div class="message user-message">{{ question }}</div>
+            {% endif %}
+            
+            {% if response is defined %}
+                {% if response == "I'm sorry, I can only respond to health-related questions at the moment." %}
+                    <div class="message bot-message error-message">{{ response }}</div>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        <form action="{{ path('chatbotadmin') }}" method="post" id="chatForm">
+            <div class="input-container">
+                <input type="text" id="text" name="text" value="{{ question }}" placeholder="Type your message...">
+                <button type="submit" form="chatForm">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+   
+
+
+
+   document.addEventListener('DOMContentLoaded', function() {
+    const lastBotMessage = document.querySelector('.bot-message:last-child'); // Select the last bot message
+
+    if (lastBotMessage) {
+        const text = lastBotMessage.textContent;
+        lastBotMessage.textContent = ''; // Clear the content of the last bot message
+        typeWriter(text, lastBotMessage, 0); // Call the typewriter function for the last bot message
+    }
+});
+
+function typeWriter(text, element, i) {
+    if (i < text.length) {
+        element.textContent += text.charAt(i); // Append the next character to the message
+        i++;
+        setTimeout(function() { 
+            typeWriter(text, element, i); 
+            // Scroll to the bottom of the chat container
+            const chatContainer = document.querySelector('.chat');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, getRandomInt(20, 30)); // Randomize typing speed
+    }
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base2.html.twig'%}
+
+{% block body %}
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <span class="text-white">ALL</span>
+            <h1 class="text-capitalize mb-5 text-lg">Services</h1>
+  
+            <!-- <ul class="list-inline breadcumb-nav">
+              <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">/</span></li>
+              <li class="list-inline-item"><a href="#" class="text-white-50">All Department</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <section class="section service-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 text-center">
+                <div class="section-title">
+                    <h2>Award winning patient care</h2>
+                    <div class="divider mx-auto my-4"></div>
+                    <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for a in service %}
+            <style>
+              .card {
+                  transition: transform 0.5s, box-shadow 0.5s, background-color 0.5s;
+                  border-radius: 15px;
+                  overflow: hidden;
+              }
+              .card:hover {
+                  transform: scale(1.05) rotate(3deg);
+                  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+                  background-color: #f8f9fa; /* Change to your desired hover color */
+              }
+              .card-img {
+                  width: 100%;
+                  height: 200px;
+                  object-fit: cover;
+                  border-top-left-radius: 15px;
+                  border-top-right-radius: 15px;
+                  transition: transform 0.5s;
+              }
+              .card:hover .card-img {
+                  transform: scale(1.1);
+              }
+              .card-body {
+                  padding: 20px;
+              }
+              .card-title {
+                  font-size: 18px;
+                  font-weight: bold;
+                  margin: 0;
+                  color: #032c57; /* Initial color */
+                  transition: color 0.3s; /* Add transition effect for color change */
+              }
+              .card:hover .card-title {
+                  color: #dc1853; /* Change color on hover */
+              }
+              .show-more-link {
+                  text-decoration: none;
+                  color: #007bff; /* Change to your desired link color */
+                  transition: color 0.3s;
+              }
+              .show-more-link:hover {
+                  color: #0056b3; /* Change to your desired link hover color */
+              }
+          </style>
+          
+          <div class="col-lg-3 col-md-6">
+              <a href="{{ path('showidservice', {'id': a.id}) }}" class="card mb-5 shadow-sm">
+                  <img src="{{ asset('uploads/' ~ a.image) }}" class="card-img" alt="{{ a.nom }}">
+                  <div class="card-body">
+                      <h4 class="card-title">{{ a.nom }}</h4>
+                      <p class="show-more-link"><i class="fa-solid fa-plus-circle mr-1"></i> Show More</p>
+                  </div>
+              </a>
+          </div>
+          
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

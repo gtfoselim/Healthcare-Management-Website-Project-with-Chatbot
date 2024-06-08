@@ -1,0 +1,134 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+
+
+	
+
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">Book your Seat</span>
+          <h1 class="text-capitalize mb-5 text-lg">Appoinment</h1>
+
+          <!-- <ul class="list-inline breadcumb-nav">
+            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">Book your Seat</a></li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="appoinment section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+          <div class="mt-3">
+            <div class="feature-icon mb-3">
+              <i class="icofont-support text-lg"></i>
+            </div>
+             <span class="h3">Call for an Emergency Service!</span>
+              <h2 class="text-color mt-3">+25 555 555 </h2>
+          </div>
+      </div>
+
+      <div class="col-lg-8">
+           <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+            <h2 class="mb-2 title-color">Book an appoinment</h2>
+            
+               {{ form_start(f, {'attr': {'novalidate': 'novalidate'}}) }}
+              
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Full Name</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.fullname,{'attr' :{'class':'form-control','value': app.user.fullname}}) }}
+                     {{ form_errors (f.fullname, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.email,{'attr' :{'class':'form-control','value': app.user.email}}) }}
+                     {{ form_errors (f.email, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputphone" class="col-sm-2 col-form-label">Phone Number</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.tel,{'attr' :{'class':'form-control', 'value': app.user.phone}}) }}
+                     {{ form_errors (f.tel, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+                </div>
+                
+                
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.date, {'label_attr': {'class': 'font-weight-bold'}})}}
+                     {{ form_errors (f.date, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputtime" class="col-sm-2 col-form-label">Time</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.time, {'label_attr': {'class': 'font-weight-bold'}})}}
+                     {{ form_errors (f.time, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+                </div>
+
+                
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Note</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.note,{'attr' :{'class':'form-control'}}) }}
+                     {{ form_errors (f.note, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+                </div>
+                
+                
+
+                
+
+                <div class="row mb-3">
+                    <label for="inputText" class="col-sm-2 col-form-label">Medecin</label>
+                    <div class="col-sm-10">
+                      {{ form_widget(f.medecin,{'attr' :{'class':'form-control'}}) }}
+                    </div>
+                  </div>
+
+                
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label"></label>
+                  <div class="col-sm-10">
+                    {{ form_widget(f.save,{'attr' :{'class':'btn btn-primary','style': 'border-radius: 50px;'}}) }}
+                  </div>
+                </div>
+
+              <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main>
+  {{ form_end(f) }}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%endblock%}

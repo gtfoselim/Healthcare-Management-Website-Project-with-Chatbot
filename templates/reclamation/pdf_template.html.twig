@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réclamation {{ reclamation.id }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #f2f2f2;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-size: 16px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+        .icon-green {
+            color: #4CAF50;
+        }
+        .icon-red {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Réclamation {{ reclamation.id }}</h1>
+        <table>
+            <tr>
+                <th><i class="fas fa-id-badge icon icon-green"></i>ID</th>
+                <td>{{ reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-tags icon icon-green"></i>nom et prénom</th>
+                <td>{{ reclamation.nom }}</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-tags icon icon-green"></i>Catégorie</th>
+                <td>{{ reclamation.categorie }}</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-heading icon icon-green"></i>Sujet</th>
+                <td>{{ reclamation.sujet }}</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-comment-alt icon icon-green"></i>Description</th>
+                <td>{{ reclamation.description }}</td>
+            </tr>
+            <tr>
+                <th><i class="far fa-clock icon icon-green"></i>Date de Soumission</th>
+                <td>{{ reclamation.subdate ? reclamation.subdate|date('Y-m-d H:i:s') : 'Non spécifiée' }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

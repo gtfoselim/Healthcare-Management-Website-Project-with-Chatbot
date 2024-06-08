@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Reply{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="text-center mb-0">Add Reply</h2>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.responseContent, 'Response Content', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.responseContent, {'attr': {'class': 'form-control', 'placeholder': 'Enter response content'}}) }}
+                        {{ form_errors(form.responseContent) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.responseDate, 'Response Date', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.responseDate, {'attr': {'class': 'form-control', 'placeholder': 'Enter response date'}}) }}
+                        {{ form_errors(form.responseDate) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.reclamation, 'Reclamation', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.reclamation, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.reclamation) }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

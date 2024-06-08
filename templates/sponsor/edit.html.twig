@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Sponsor{% endblock %}
+
+{% block body %}
+<div style="margin: 400px;">
+    <h1>Edit Sponsor</h1>
+
+    {{ include('sponsor/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_sponsor_index') }}">back to list</a>
+
+    {{ include('sponsor/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

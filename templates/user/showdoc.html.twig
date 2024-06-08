@@ -1,0 +1,219 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block text-center">
+                    <span class="text-white">All Doctors</span>
+                    <h1 class="text-capitalize mb-5 text-lg">Specialized doctors</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- portfolio -->
+<section class="section service-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h2>Doctors</h2>
+                    <div class="divider mx-auto my-4"></div>
+                    <p>Our team of dedicated doctors offers a wide range of specialized medical services. From preventive care to advanced treatments, our physicians ensure comprehensive healthcare tailored to meet your unique needs.</p>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .cool-input {
+                border: 2px solid #ccc;
+                border-radius: 20px;
+                padding: 10px 20px;
+                font-size: 16px;
+                outline: none;
+                transition: border-color 0.3s ease;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .cool-input:focus {
+                border-color: dodgerblue;
+                box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+            }
+
+            .search-container {
+                position: relative;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #888;
+            }
+
+            .cool-input {
+                padding-left: 30px; /* Adjust based on icon size */
+            }
+
+            .fa {
+                font-size: 18px;
+            }
+
+            .cards-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px; /* Adjust spacing between cards */
+            }
+
+            .card-item {
+                flex: 1 1 calc(25% - 20px); /* 25% width minus the gap space */
+                box-sizing: border-box;
+                max-width: calc(25% - 20px);
+                margin: 10px;
+            }
+
+            .card {
+                transition: transform 0.5s, box-shadow 0.5s, background-color 0.5s;
+                border-radius: 15px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                height: 100%;
+            }
+
+            .card:hover {
+                transform: scale(1.05) rotate(3deg);
+                box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+                background-color: #f8f9fa;
+            }
+
+            .card-img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                transition: transform 0.5s;
+            }
+
+            .card:hover .card-img {
+                transform: scale(1.1);
+            }
+
+            .card-body {
+                padding: 20px;
+                flex: 1; /* Make the body take the remaining space */
+            }
+
+            .card-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0;
+                color: #032c57;
+                transition: color 0.3s;
+            }
+
+            .card:hover .card-title {
+                color: #dc1853;
+            }
+
+            .show-more-link {
+                text-decoration: none;
+                color: #007bff;
+                transition: color 0.3s;
+            }
+
+            .show-more-link:hover {
+                color: #0056b3;
+            }
+
+            @media (max-width: 992px) {
+                .card-item {
+                    flex: 1 1 calc(33.33% - 20px);
+                    max-width: calc(33.33% - 20px);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .card-item {
+                    flex: 1 1 calc(50% - 20px);
+                    max-width: calc(50% - 20px);
+                }
+            }
+
+            @media (max-width: 576px) {
+                .card-item {
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                }
+            }
+            .card.hidden {
+                visibility: hidden; /* Hide the card */
+            }
+        </style>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search..." class="cool-input">
+            <span class="search-icon"><i class="fa fa-search" style="margin-bottom: 19px;"></i></span>
+        </div>
+
+        <div id="searchResults" class="cards-container">
+            <div class="row">
+                {% for a in user %}
+                {% if a.roles[0] == 'medecin' %}
+                <div class="card-item">
+                    <div class="card">
+                        <img src="{{ asset('uploads/photos/' ~ a.photo) }}" alt="{{ a.fullname }}" class="card-img">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{{path('rendezvous_calendar',{'id':a.id})}}">{{ a.username }}</a></h4>
+                            <p><strong style="color:#696969">Speciality: </strong>{{ a.specialite }}</p>
+                            <p><strong style="color:#696969">Address: </strong>{{ a.adress }}</p>
+                            <p><strong style="color:#696969">Phone number: </strong>{{ a.phone }}</p>
+                            <div class="service-nom" data-nom="{{ a.username }}" data-specialite="{{ a.specialite }}" data-adress="{{ a.adress }}"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#searchInput').on('input', function() {
+        var query = $(this).val().toLowerCase();
+        $('.card-item').each(function() {
+            var card = $(this);
+            var cardBody = card.find('.card-body');
+            var serviceNomElement = cardBody.find('.service-nom');
+            var username = serviceNomElement.data('nom').toLowerCase();
+            var speciality = serviceNomElement.data('specialite').toLowerCase();
+            var address = serviceNomElement.data('adress').toLowerCase();
+            if (username.includes(query) || speciality.includes(query) || address.includes(query)) {
+              card.find('.card').removeClass('hidden'); // Show the card
+            } else {
+                card.find('.card').addClass('hidden'); // Hide the card
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

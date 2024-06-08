@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des événements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Date et heure actuelles : {{ "now"|date('Y-m-d H:i') }}
+    </div>
+
+    <div class="logo">
+        <img src="{{ asset('uploads/logo4.png') }}" alt="Logo">
+    </div>
+
+    <div class="title">
+        LISTE DES ÉVÉNEMENTS
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Nom</th>
+                    <th>Lieu</th>
+                    <th>Nom du Sponsor</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th>
+                    <th>Nombre de Participants</th>
+                </tr>  
+            </thead>
+            <tbody>
+                {% for evenement in evenements %}
+                    <tr>                                        
+                        <td><img src="{{ asset('uploads/' ~ evenement.imageEvenement) }}" style="width:150px; height:150px;" alt=""></td>
+                        <td>{{ evenement.typeEvenement }}</td>
+                        <td>{{ evenement.nomEvenement }}</td>
+                        <td>{{ evenement.lieuEvenement }}</td>
+                        <td>{{ evenement.Sponsor }}</td>
+                        <td>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d H:i') : '' }}</td>
+                        <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i') : '' }}</td>
+                        <td>{{ evenement.nbParticipants }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

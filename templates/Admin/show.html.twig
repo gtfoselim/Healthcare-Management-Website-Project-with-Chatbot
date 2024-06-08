@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Appointements  Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
+              
+
+    
+
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>
+                      <b>ID</b>
+                    </th>
+                   
+                    <th>Medecin</th>
+                    <th>Email</th>
+                    <th>Full Name</th>
+                    <th>Phone Number</th>
+                    <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
+                    <th>Time</th>
+                    <th>Note</th>
+                    <th>Etat</th>
+                    <td>delete</td>
+                    <td>edit</td>
+                    <td>Approve RV </td>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in rendezvous %}
+                  <tr>
+                    <td>{{i.id}}</td>
+                   
+                    <td>{{medecinsname[loop.index0]}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.fullname}}</td>
+                    <td>{{i.tel}}</td>
+                    <td>{{i.date |date('Y-m-d') }}</td>
+                    <td>{{i.time|date(' H:i:s')}}</td>
+                    <td>{{i.note}}</td>
+                    <td>{{i.etat}}</td>
+                    <td><button type="button" class="btn btn-outline-warning" onclick="window.location.href='{{ path('deleteRV',{'id':i.id} )}}'">delete</button></td>
+                    <td> <button type="button" class="btn btn-outline-info" onclick="window.location.href='{{ path('editrv', {'id': i.id}) }}'">Edit</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="window.location.href='{{ path('confirmerRV', {'id': i.id}) }}'"><i class="bi bi-check-circle"></i></button></td>
+                  </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- End #main -->
+  <script src="{{asset('assets/js/main.js')}}"></script>
+  
+  {% endblock %}

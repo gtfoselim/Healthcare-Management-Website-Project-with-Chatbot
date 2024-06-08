@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Réponses{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+    <!-- Bouton pour changer de langue -->
+   
+  
+  
+      
+  
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            
+             
+            <div class="card">
+              <div class="card-body">
+                <a href="{{ path('add_reply')}}"><i class="ri-arrow-left-circle-fill" style="font-size: 30px;"></i></a>
+                <h5 class="card-title">Replies</h5>
+           
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Date de Réponse</th>
+                      <th>Contenu</th>
+                      <th>Auteur</th> <!-- Ajout de la colonne Auteur -->
+                      <th>Réclamation</th>
+                      <th>Editer</th>
+                      <th>Supprimer</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for reply in replies %}
+                      <tr>
+                          <td>{{ reply.id }}</td>
+                          <td>{{ reply.responseDate|date('Y-m-d H:i:s') }}</td>
+                          <td>{{ reply.responseContent }}</td>
+                          <td>{{ reply.author }}</td> <!-- Afficher l'auteur de la réponse -->
+                          <td>{{ reply.reclamation.id }}</td>
+                          <td>
+                            <a href="{{ path('edit_reply', {'id': reply.id}) }}" class="btn btn-sm btn-primary" title="Modifier"><i class="fas fa-edit fa-shake"></i></a></td>
+                           <td> <a href="{{ path('delete_reply', {'id': reply.id}) }}" class="btn btn-sm btn-danger" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réponse ?')"><i class="fas fa-trash fa-bounce"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('add_reply') }}" class="btn btn-primary d-block mx-auto mt-4">Ajouter une réponse</a>
+    </div>
+{% endblock %}

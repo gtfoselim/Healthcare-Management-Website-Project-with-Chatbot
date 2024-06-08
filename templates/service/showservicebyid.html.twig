@@ -1,0 +1,142 @@
+{% extends 'base2.html.twig'%}
+
+{% block body %}
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">Service Details</span>
+          <h1 class="text-capitalize mb-5 text-lg">{{ service.nom }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section department-single">
+    <style>
+        .department-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px; /* Adjust the height as needed */
+        }
+
+        .department-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8; /* Adjust the opacity as needed */
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .cool-contact-info {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cool-contact-info:hover {
+            transform: translateY(-5px);
+        }
+
+        .cool-contact-info h4 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cool-contact-info h3 {
+            color: #cf2a54;
+            font-size: 24px;
+            margin-bottom: 0;
+        }
+
+        .appointment-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #cf2a54;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .appointment-btn:hover {
+            background-color: #006e70;
+            transform: translateY(-3px);
+        }
+
+        .appointment-btn i {
+            margin-left: 10px;
+        }
+
+		
+    </style>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="department-img text-center animate__animated animate__fadeIn">
+                    <img src="{{ asset('uploads/' ~ service.image) }}" class="img-fluid rounded shadow-lg" alt="Service Image">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-8">
+                <div class="department-content animate__animated animate__fadeInLeft">
+                    <h3 class="text-md mb-4">{{ service.nom }}</h3>
+                    <div class="divider mb-4"></div>
+                    <p  class="lead typewriter">{{ service.description }}</p> <!-- Removed 'typewriter' class -->
+                    <a href="{{ path('addformreservationser') }}" class="appointment-btn">
+                        Make an Appointment <i class="icofont-simple-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="sidebar-contact-info cool-contact-info animate__animated animate__fadeInRight">
+                    <h4>Need Urgent Help?</h4>
+                    <h3>+23-4565-65768</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const descriptionElement = document.querySelector('.typewriter');
+        const descriptionText = "{{ service.description }}";
+
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                descriptionElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(function() { typeWriter(text, i); }, getRandomInt(20, 30)); // Randomize typing speed
+            }
+        }
+
+        typeWriter(descriptionText, 0);
+    });
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+</script>
+{% endblock %}

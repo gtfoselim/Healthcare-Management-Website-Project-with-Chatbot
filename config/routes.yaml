@@ -1,0 +1,14 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+ajax_search:
+    path: /search
+    defaults: { _controller: 'App\Controller\ServiceController::searchAction' }
+
+change_language:
+    path: /change-language/{language}
+    controller: App\Controller\ServiceController::switchLanguage
+
+rendezvous_calendar:
+    path: /rendezvous-calendar/{id}
+    controller: App\Controller\RendezvousController::calendar

@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+    <div class="service">
+        <div class="container">
+            <div class="section-header text-center">
+                <h4 style="margin-top:-200px; margin-bottom:50px;">Liste des Evenements</h4>
+            </div>
+            <div class="row">
+                {% for evenement in evenements %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="service-item">
+                            <img src="{{ asset('uploads/' ~ evenement.imageEvenement)}}" style="width:360px; height:250px;" alt="">
+                            <center><h2>{{ evenement.nomEvenement }}</h2></center>
+                            <br>
+                            <p><strong style="color:#696969"> Type:</strong> {{ evenement.typeEvenement }}</p>
+                            <p><strong style="color:#696969">Place:</strong> {{ evenement.lieuEvenement }}</p>
+                            <p><strong style="color:#696969">Number of participants:</strong> {{ evenement.nbParticipants }}</p>
+                            <p><strong style="color:#696969">Start Date:</strong> {{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d') : '' }}</p>
+                            <p><strong style="color:#696969">Final Date:</strong> {{ evenement.dateFin ? evenement.dateFin|date('Y-m-d') : '' }}</p>
+                            {% if evenement.sponsor is not null %}
+                            <p><strong style="color:#696969">Sponsor</strong> : {{ evenement.sponsor.nomSponsor }}
+                            {% else %}
+                            <p><strong style="color:#696969">No Sponsor</strong>
+                            {% endif %}
+
+                            <br><br>
+                            {% if evenement.nbParticipants > 0 %}
+                                <center> <a href="{{ path('app_participant_new',{'idevent':evenement.id}) }}"  class="btn btn-primary" style="border-radius: 50px;">Participer</a></center>
+                            {% endif %}
+                            <br>
+                            {# -------------------------- Share ------------------------------------  #}
+                            <div class="sharethis-inline-share-buttons"></div>
+                            {# -------------------------- Share ------------------------------------  #}
+
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col">
+                        <p class="text-center">Aucun événement trouvé.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="pagination-container text-center mt-4">
+        {{ knp_pagination_render(evenements, 'pagination_template.html.twig') }}
+    </div>
+
+{% endblock %}

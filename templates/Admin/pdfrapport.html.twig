@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Page</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.page-content {
+    width: 100%; /* Utiliser toute la largeur de l'écran */
+    height: 100%; /* Utiliser toute la hauteur de l'écran */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #009688;
+}
+
+b {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+h2 {
+    color: #009688;
+}
+
+h3 {
+    color: #009688;
+}
+.logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            max-width: 100px; /* Ajustez la largeur maximale selon vos besoins */
+            height: auto; /* Pour conserver les proportions de l'image */
+        }
+    </style>
+</head>
+<body>
+    <div class="page-content">
+        <h1>VOTRE RAPPORT MEDICAL</h1>
+        <b>SOUS LE NOM : {{r.rendezvous}}</b>
+        <b>TYPE DE RAPPORT : {{r.type}}</b>
+        <b>DESCRIPTION : {{r.note}}</b>
+        <h3>A BIENTOT !</h3>
+        <h3>VISITA</h3>
+    </div>
+</body>
+</html>

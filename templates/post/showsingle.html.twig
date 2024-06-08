@@ -1,0 +1,417 @@
+{% extends 'base2.html.twig' %}
+
+
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<style>
+
+	
+    /* Read mode styles */
+    .read-mode #content {
+        font-size: 45px;
+        line-height: 1.6;
+        background-color: #f9f9f9;
+        padding: 20px;
+    }
+
+    .read-mode #toggle-read-mode {
+        display: none; /* Hide toggle button in read mode */
+    }
+
+    /* Toggle button styles */
+    .toggle-container {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider {
+        background-color: #007bff;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #007bff;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+		
+    }
+
+	/* Adjust column widths */
+    .col-lg-8 {
+        width: 70%; /* Adjust as needed */
+        margin: auto; /* Center the column */
+    }
+
+    .col-lg-4 {
+        width: 30%; /* Adjust as needed */
+        margin: auto; /* Center the column */
+    }
+</style>
+
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <span class="text-white">News details</span>
+            <h1 class="text-capitalize mb-5 text-lg">Blog Single</h1>
+  
+            <!-- <ul class="list-inline breadcumb-nav">
+              <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">/</span></li>
+              <li class="list-inline-item"><a href="#" class="text-white-50">News details</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section blog-wrap" id="content">
+	  <div style="display: flex; justify-content: right; align-items: center;padding-right: 1%;">
+		<h1 style="text-align: center; margin-right: 20px;">
+			<i class="fas fa-book-reader" style="font-size: 36px; color: #007bff; margin-right: 10px;"></i>
+			Read Mode
+		</h1>
+		<div class="toggle-container">
+			<label class="switch">
+				<input type="checkbox" id="toggle-read-mode">
+				<span class="slider round"></span>
+			</label>
+		</div>
+	</div>
+	  <div class="container" id="content" style="margin-left: -7%;margin-top: -7%;">
+        <!-- <div class="row"> -->
+			<div class="col-lg-8">
+                <div class="row">
+	<div class="col-lg-12 mb-5">
+		<div class="single-blog-item" style="text-align: left; width: 170%;">
+			<img src="images/blog/blog-1.jpg" alt="" class="img-fluid">
+
+			<div class="blog-item-content" id="content">
+				<div class="blog-item-meta mb-3">
+					<span class="text-color-2 text-capitalize mr-3"><i class="icofont-book-mark mr-2"></i>{{post.TypePost}}</span>
+					<span class="text-muted text-capitalize mr-3"><i class="icofont-comment mr-2"></i>{{post.NbCommentsPost}} Comments</span>
+					<span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i> {{post.MakedatePost.format('Y-m-d')}}</span>
+					
+				</div> 
+
+				<h2 class="mb-4 text-md"><a ></a>{{post.TitlePost}}</h2>
+
+				<p class="lead mb-4" id="content">{{post.ContenuPost}}</p>
+				
+				
+				
+				<div class="mt-5 clearfix">
+				    <!-- <ul class="float-left list-inline tag-option"> 
+				    	<li class="list-inline-item"><a href="#">Advancher</a></li>
+				    	<li class="list-inline-item"><a href="#">Landscape</a></li>
+				    	<li class="list-inline-item"><a href="#">Travel</a></li>
+				   	</ul>         -->
+
+				    <ul class="float-right list-inline" id="content">
+						<div style="display: flex;">
+							{# Button to add a like to the post #}
+							<form action="{{ path('addlikepost', {'id': post.id}) }}" method="post" style="padding: 0.5rem;">
+								<a href="like.png"></a><button type="submit" class="btn btn-primary"><i class="fas fa-thumbs-up"></i> Like</button>
+							</form>
+							<form action="{{ path('adddislikepost', {'id': post.id}) }}" method="post"style="padding: 0.5rem;">
+								<button type="submit" class="btn btn-primary"><i class="fas fa-thumbs-down"></i> DisLike</button>
+							</form>
+							
+						</div>
+						
+						
+				        <li class="list-inline-item"> Share: </li>
+				        <li class="list-inline-item"><a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/postsingle/{{post.id}}" target="_blank" rel="noopener noreferrer" target="_blank"><i class="icofont-facebook" aria-hidden="true"></i></a></li>
+				        <li class="list-inline-item"><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2F127.0.0.1:8000%2Fpostsingle%2F{{post.id}}&text=Check%20out%20this%20awesome%20post" target="_blank" rel="noopener noreferrer" target="_blank"><i class="icofont-twitter" aria-hidden="true"></i></a></li>
+				        <li class="list-inline-item"><a href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2F127.0.0.1%3A8000%2Fpostsingle%2F28&media=image_url&description=description_text" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" target="_blank"><i class="icofont-pinterest" aria-hidden="true"></i></a></li>
+				        <li class="list-inline-item"><a href="https://www.linkedin.com/sharing/share-offsite/?url=http://127.0.0.1:8000/postsingle/{{post.id}}" target="_blank" rel="noopener noreferrer" target="_blank"><i class="icofont-linkedin" aria-hidden="true"></i></a></li>
+				    </ul>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="post-likes" style="font-size: 20px;color: #555; margin-right: 20px;display: inline-block;" id="content">
+		<span class="likes-icon" style="margin-left: 5px;color: rgb(99, 145, 111);"><i class="fas fa-thumbs-up"></i></span>
+		<span class="likes-count" style="font-weight: bold; color: #007bff;">{{post.LikesPost}}</span> Likes
+		<span style="margin-left: 5px;color: rgb(150, 105, 111);"><i class="fas fa-thumbs-down"></i></span>
+		<span style="font-weight: bold;color: #dc3545;">{{post.DislikesPost}}</span> DisLikes
+	</div>
+	<div class="col-lg-12" id="content">
+		<div class="comment-area mt-4 mb-5" id="content">
+			<h4 class="mb-4">{{post.NbCommentsPost}} Comments on This post </h4>
+			<input style="width: 200px;padding: 10px;margin: 5px;border: 1px solid #ccc;border-radius: 5px;box-sizing: border-box;font-size: 16px;" type="text" id="searchName" placeholder="Search by Name">
+			<input style="width: 200px;padding: 10px;margin: 5px;border: 1px solid #ccc;border-radius: 5px;box-sizing: border-box;font-size: 16px;" type="text" id="searchContent" placeholder="Search by Content">
+			<input style="width: 200px; padding: 10px; margin: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;font-size: 16px;" type="date" id="searchDate" placeholder="Search by Date">
+			<ul class="comment-tree list-unstyled">
+				<li class="mb-5">
+					<div class="comment-area-box">
+						
+						{% for comment in comments %}
+						<!-- <div class="comment-thumb float-left">
+							<img alt="" src="images/blog/testimonial1.jpg" class="img-fluid">
+						</div> -->
+						<div class="contenucom" id="content">
+							
+							<div class="comment-info" style="margin-bottom: -0.5rem;">
+								<h5 class="mb-1"></h5>
+							<span class="nam" id="content">{{comment.NameComment}}</span>
+							<span class="date-comm"id="content">| {{comment.DatecreationComment.format('Y-m-d')}}</span>
+						</div>
+						<!-- <div class="comment-meta mt-2">
+							<a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply</a>
+						</div> -->
+						
+						<div class="comment-content mt-3" style="margin-bottom: -1rem;">
+							
+								<span class="cont"id="content">	{{comment.ContenuComment}}</span>
+							
+							
+							
+							
+						</div>
+						
+						<div style="display: flex; margin-bottom: 1rem;" >
+							{# Button to add a like to the post #}
+							<form action="{{ path('addlikecomment', {'id': comment.id}) }}" method="post" style="padding: 0.5rem;">
+								<a href="{{ path('addlikecomment', {'id': comment.id}) }}"  style="text-decoration: none;font-size: 1.5rem;color: lightgreen;">
+									<i class="fas fa-thumbs-up"></i> <!-- Font Awesome thumbs-up icon -->
+									<span style="margin-left: 0.5rem; color: #555;">{{ comment.LikesComment }}</span>
+									<style>
+										a:hover i.fas.fa-thumbs-up{
+									color:green;
+								}
+							</style>
+								</a>
+							</form>
+							
+							<form action="{{ path('adddislikecomment', {'id': comment.id}) }}" method="post" style="padding: 0.5rem;">
+								<a   href="{{ path('adddislikecomment', {'id': comment.id}) }}"  style="text-decoration: none;font-size: 1.5rem;color:lightcoral;">
+									<i class="fas fa-thumbs-down"></i> <!-- Font Awesome thumbs-down icon -->
+									<span style="margin-left: 0.5rem;color: #555;">{{ comment.DislikesComment }}</span>
+									
+									<style>
+										a:hover i.fas.fa-thumbs-down {
+											color:red;
+								}
+							</style>
+								</a>
+							</form>
+							
+						</div>
+						
+					</div>
+						{% endfor%}
+					</div>
+				</li>
+
+				<!-- <li>
+					<div class="comment-area-box">
+						<div class="comment-thumb float-left">
+							<img alt="" src="images/blog/testimonial2.jpg" class="img-fluid">
+						</div>
+
+						<div class="comment-info">
+							<h5 class="mb-1">Philip W</h5>
+							<span>United Kingdom</span>
+							<span class="date-comm">| Posted June 7, 2019</span>
+						</div>
+
+						<div class="comment-meta mt-2">
+							<a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply </a>
+						</div>
+
+						<div class="comment-content mt-3">
+							<p>Some consultants are employed indirectly by the client via a consultancy staffing company, a company that provides consultants on an agency basis. </p>
+						</div>
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+
+
+
+	<div class="col-lg-12">
+		<!-- Comment form -->
+		<div class="form-container"id="content">
+			<!-- Form start -->
+			
+			
+			{{ form_start(commentForm, {'attr': {'class': 'comment-form', 'id': 'comment-form'}}) }}
+			<div class="row">
+
+				<div class="col-md-6">
+					<!-- Form fields -->
+					<div class="form-group">
+
+						{{ form_widget(commentForm.name_comment, {'attr': {'class': 'form-control', 'placeholder': 'Your Name'}}) }}
+						{{ form_errors(commentForm.name_comment, {'attr': {'class': 'form-danger'}}) }}
+
+					</div>
+				</div>
+				<div class="col-md-6">
+					{{ form_widget(commentForm.mail_comment, {'attr': {'class': 'form-control', 'placeholder': 'Your Email'}}) }}
+					{{ form_errors(commentForm.mail_comment , {'attr': {'class': 'form-danger'}}) }}
+				</div>
+				
+
+			</div>
+					{{ form_widget(commentForm.contenu_comment, {'attr': {'class': 'form-control mb-4 comment-textarea', 'placeholder': 'Comment', 'rows': '12'}}) }}
+					{{ form_errors(commentForm.contenu_comment, {'attr': {'class': 'form-danger'}}) }}
+				
+			
+			<!-- Hidden fields -->
+			<div style="display: none;">
+				{{ form_widget(commentForm.likes_comment) }}
+				{{ form_widget(commentForm.dislikes_comment) }}
+				{{ form_widget(commentForm.datecreation_comment) }}
+				{{ form_widget(commentForm.id_post) }}
+				{{ form_widget(commentForm.id_comment) }}
+			</div>
+			{{form_widget(commentForm.captcha)}}
+			{{form_errors(commentForm.captcha)}}
+			<!-- Submit button -->
+			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+			<!-- Form end -->
+			{{ form_end(commentForm) }}
+		</div>
+	</div>
+	
+	
+	<!--  -->
+
+
+</div>
+            </div>
+              
+        <!-- </div> -->
+    </div>
+	
+</section>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // List of bad words to check for
+        var badWords = ["bad", "badword"];
+
+        // Event listener for form submission
+        document.querySelector('.comment-form').addEventListener('submit', function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+
+            // Get the value of the comment input field
+            var commentField = document.querySelector('.comment-textarea').value.toLowerCase();
+
+            // Check if the comment includes a bad word
+            for (var i = 0; i < badWords.length; i++) {
+                if (commentField.includes(badWords[i].toLowerCase())) {
+                    // Show an alert message if a bad word is found
+                    alert('Please remove inappropriate language from your comment.');
+                    return;
+                }
+            }
+
+            // If no bad words are found, submit the form
+            event.target.submit();
+        });
+    });
+</script>
+
+<script>
+    // JavaScript to toggle read mode
+    document.addEventListener("DOMContentLoaded", function() {
+        var slider = document.getElementById("toggle-read-mode");
+        var content = document.getElementById("content");
+
+        slider.addEventListener("change", function() {
+            if (this.checked) {
+                content.classList.add("read-mode");
+            } else {
+                content.classList.remove("read-mode");
+            }
+        });
+    });
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to perform the search based on the specified column
+        function searchColumn(columnIndex, value) {
+            $(".contenucom").filter(function () {
+                // Get the text content of the specified column
+                var cellText = $(this).find(".nam, .date-comm, .cont").eq(columnIndex).text().toLowerCase();
+                // Check if the text content contains the search value
+                var found = cellText.indexOf(value) > -1;
+                $(this).toggle(found);
+            });
+        }
+
+        // Event handlers for each input element
+        $("#searchName").on("keyup", function () {
+            searchColumn(0, $(this).val().toLowerCase());
+        });
+
+        $("#searchDate").on("keyup", function () {
+            searchColumn(1, $(this).val().toLowerCase());
+        });
+
+        $("#searchContent").on("keyup", function () {
+            searchColumn(2, $(this).val().toLowerCase());
+        });
+    });
+</script>
+	
+	
+
+{% endblock %}

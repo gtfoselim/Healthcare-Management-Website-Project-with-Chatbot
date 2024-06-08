@@ -1,0 +1,78 @@
+{# templates/front/rendezvouschart.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+  
+    
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+  
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
+        <canvas id="barChart" width="800" height="400"></canvas>
+    </div>
+
+    <script>
+        var doctorAppointments = {{ doctorAppointments|json_encode|raw }};
+
+        var labels = doctorAppointments.map(appointment => appointment.doctorName);
+        var data = doctorAppointments.map(appointment => appointment.appointmentsCount);
+
+        var barColors = data.map(count => 'rgba(255, 99, 132, ${count / Math.max(...data)})');
+
+        var ctx = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Doctor Appointments',
+                    data: data,
+                    backgroundColor: barColors,
+                    borderColor: barColors.map(color => color.replace(/[^,]+(?=\))/, '1')),
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Doctors',
+                        },
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Number of Appointments',
+                        },
+                    },
+                },
+            }
+        });
+    </script>
+
+</div>
+</div>
+</section>
+
+ 
+
+</main>
+{% endblock %}

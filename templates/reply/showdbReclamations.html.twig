@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Réclamations{% endblock %}
+
+{% block body %}
+
+
+{% if reclamations is empty %}
+<p class="text-center">Aucune réclamation n'a été trouvée.</p>
+{% else %}
+<main id="main" class="main">
+    <div class="container">
+        <h1 class="text-center mb-4">Liste des Réclamations</h1>
+    
+        {# Formulaire de recherche avancée #}
+        {{ form_start(form) }}
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_row(form.nom, { 'attr': {'class': 'form-control', 'placeholder': 'Nom'} }) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_row(form.category, { 'attr': {'class': 'form-select'} }) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    {{ form_row(form.submissionDate, { 'attr': {'class': 'form-control', 'placeholder': 'Date de soumission'} }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" id="searchInput" placeholder="Rechercher le sujet" class="form-control cool-input">
+                    <span class="input-group-text search-icon"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </div>
+        {{ form_end(form) }}
+    
+        <!-- Bouton pour voir les statistiques -->
+        <a href="{{ path('admin_stats') }}" class="btn btn-info d-block mx-auto mt-4">Voir les Statistiques</a>
+    </div>
+   
+  
+  
+      
+  
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            
+             
+            <div class="card">
+              <div class="card-body">
+                <a href="{{ path('add_reply')}}"><i class="ri-arrow-left-circle-fill" style="font-size: 30px;"></i></a>
+                <h5 class="card-title">Reclamations</h5>
+              
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom et Prénom</th>
+                        <th>Catégorie</th>
+                        <th>Sujet</th>
+                        <th>Description</th>
+                        <th>Date de Soumission</th>
+                        <th>Supprimer</th>
+                        <th>Répondre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reclamation in reclamations %}
+                    <tr>
+                        <td>{{ reclamation.id }}</td>
+                        <td>{{ reclamation.nom }}</td>
+                        <td>{{ reclamation.categorie }}</td>
+                        <td>{{ reclamation.sujet }}</td>
+                        <td>{{ reclamation.description }}</td>
+                        <td>{{ reclamation.subdate ? reclamation.subdate|date('Y-m-d H:i:s') : 'Non spécifiée' }}</td>
+                        <td>
+                            <a href="{{ path('delete_dbreclamation', { 'id': reclamation.id }) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réclamation ?')"><i class="fa-regular fa-trash-can fa-bounce fa-xl" style="color: #ffffff;"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('add_reply', { 'id': reclamation.id }) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-reply-all fa-shake fa-xl"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#searchInput').on('input', function() {
+            var query = $(this).val().toLowerCase();
+            $('.table tbody tr').each(function() {
+                var row = $(this);
+                var sujet = row.find('td:eq(3)').text().toLowerCase(); // Changement de l'index de la colonne
+                if (sujet.includes(query)) {
+                    row.fadeIn(300);
+                } else {
+                    row.fadeOut(300);
+                }
+            });
+        }); 
+    });
+</script>
+{% endblock %}

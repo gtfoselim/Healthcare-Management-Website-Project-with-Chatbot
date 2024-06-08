@@ -1,0 +1,462 @@
+{% extends 'base2.html.twig'%}
+
+{%block body %}
+
+<style>
+	.banner .block h1 {
+    font-size: 60px;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    text-transform: capitalize;
+    color: #fff;
+}
+
+.feature-item .feature-icon i {
+    font-size: 50px;
+    color: #06785d;
+}
+.btn-main {
+    background: #06785d;
+    color: #fff;
+    border-color: #06785d;
+
+	.btn-main-2:hover {
+    background: #06785d;
+    color: #fff;
+    border-color: #06785d;
+}
+}
+.btn-main-2:hover {
+    background: #06785d;
+    color: #fff;
+    border-color: #06785d;
+}
+.cta:before {
+    position: absolute;
+    content: "";
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: #06785d;
+}
+.title-color {
+    color: #06785d;
+}
+
+.section-title h2 {
+    color: #06785d;
+}
+</style>
+
+<!-- Slider Start -->
+<section class="banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-12 col-xl-7">
+				<div class="block">
+					<div class="divider mb-3"></div>
+					<span class="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
+					<h1 class="mb-3 mt-3">Your most trusted health partner</h1>
+					
+					
+					<div class="btn-container ">
+						<a href="/add" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Make appoinment <i class="icofont-simple-right ml-2  "></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="features">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="feature-block d-lg-flex">
+					<div class="feature-item mb-5 mb-lg-0">
+						<div class="feature-icon mb-4">
+							<i class="icofont-surgeon-alt"></i>
+						</div>
+						<span>24 Hours Service</span>
+						<h4 class="mb-3">Online Appoinment</h4>
+						<p class="mb-4" style="color: #c1c35c;">Get your appointment now</p>
+						<a href="/add" class="btn btn-main btn-round-full">Make a appoinment</a>
+					</div>
+				
+					<div class="feature-item mb-5 mb-lg-0">
+						<div class="feature-icon mb-4">
+							<i class="icofont-ui-clock"></i>
+						</div>
+						<span>Timing schedule</span>
+						<h4 class="mb-3">Working Hours</h4>
+						<ul class="w-hours list-unstyled" style="color: #c1c35c;">
+    <li class="d-flex justify-content-between">Sun - Wed : <span>8:00 - 17:00</span></li>
+    <li class="d-flex justify-content-between">Thu - Fri : <span>9:00 - 17:00</span></li>
+    <li class="d-flex justify-content-between">Sat - Sun : <span>10:00 - 17:00</span></li>
+</ul>
+
+					</div>
+				
+					<div class="feature-item mb-5 mb-lg-0">
+						<div class="feature-icon mb-4">
+							<i class="icofont-support"></i>
+						</div>
+						<span>Emegency Cases</span>
+						<h4 class="mb-3">+216 25 555 555</h4>
+						<p class="mb-4" style="color: #c1c35c;">In emergencies, you can always call us!</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="section about">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-4 col-sm-6">
+				<div class="about-img">
+					<img src="{{asset ('../assets2/images/about/img-6.jpg') }}" alt="" class="img-fluid">
+					<img src="assets2/images/about/img-2.jpg" alt="" class="img-fluid mt-4">
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6">
+				<div class="about-img mt-4 mt-lg-0">
+					<img src="assets2/images/about/img-3.jpg" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="about-content pl-4 mt-4 mt-lg-0">
+					<h2 class="title-color">Personal care <br>& healthy living</h2>
+					<p class="mt-4 mb-5">We provide best leading medicle services </p>
+
+					<a href="/tableservice/front" class="btn btn-main-2 btn-round-full btn-icon">Services<i class="icofont-simple-right ml-3"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="cta-section">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const counterStats = document.querySelectorAll('.counter-stat');
+
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5,
+    };
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    counterStats.forEach(stat => {
+        observer.observe(stat);
+    });
+});
+</script>
+
+    <div class="container">
+        <div class="cta position-relative">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter-stat text-center">
+                        <i class="icofont-doctor"></i>
+                        <span class="h3">58</span>k
+                        <p>Happy People</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter-stat text-center">
+                        <i class="icofont-doctor"></i>
+                        <span class="h3">700</span>k
+                        <p>Surgeries Completed</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter-stat text-center">
+                        <i class="icofont-doctor"></i>
+                        <span class="h3">40</span>k
+                        <p>Expert Doctors</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter-stat text-center">
+                        <i class="icofont-doctor"></i>
+                        <span class="h3">20</span>k
+                        <p>Worldwide Branches</p>
+                    </div>
+                </div>
+                <!-- Repeat the same structure for other counter-stats -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section service gray-bg">
+	<div class="container">
+		
+
+<h2 class="title-color" style="text-align: center; margin-top: 0;">Specialities </h2>
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-laboratory text-lg"></i>
+						<h4 class="mt-3 mb-3">Laboratory services</h4>
+					</div>
+
+					<div class="content">
+						<p class="mb-4">Lab services: Precise analyses for medical diagnoses and research insights.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-heart-beat-alt text-lg"></i>
+						<h4 class="mt-3 mb-3">Heart Disease</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">Heart disease: Affects heart, managed with lifestyle changes, meds, and, if needed, surgery. Early detection crucial.</p>
+					</div>
+				</div>
+			</div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-brain-alt text-lg"></i>
+						<h4 class="mt-3 mb-3">Neurology Sargery</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">Neurology Surgery: Specialized procedures for treating neurological conditions.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-tooth text-lg"></i>
+						<h4 class="mt-3 mb-3">Dental Care</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">Dental Care: Oral health maintenance and treatments for a healthy smile.</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-crutch text-lg"></i>
+						<h4 class="mt-3 mb-3">Body Surgery</h4>
+					</div>
+
+					<div class="content">
+						<p class="mb-4">Body Surgery: Cosmetic procedures for enhancing physical appearance.</p>
+					</div>
+				</div>
+			</div>
+
+			
+			
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-dna-alt-1 text-lg"></i>
+						<h4 class="mt-3 mb-3">Gynecology</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">
+Gynecology: Women's reproductive health care and wellness services.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section testimonial-2 gray-bg">
+    <div class="section-title text-center">
+					<h2>Reviews</h2>
+					<div class="divider mx-auto my-4"></div>
+					
+				</div>
+			
+	
+
+	<div class="container mt-4"> <!-- Adjust the margin top value as needed -->
+        <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="testimonial-block style-2 gray-bg">
+                    <i class="icofont-quote-right"></i>
+
+                    <div class="testimonial-thumb">
+                        <img src="assets2/images/team/test-thumb1.jpg" alt="" class="img-fluid">
+                    </div>
+
+                    <div class="client-info ">
+                        <h4 class="text-black">Amazing service!</h4>
+                        <span class="text-muted">Mehdi Fgaier</span>
+                        <p class="mb-4 text-black">
+                            The service provided was absolutely outstanding, surpassing all expectations.
+                            Every aspect was handled with precision and excellence, making the entire experience truly exceptional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repeat the structure for other testimonials with appropriate changes -->
+            <div class="carousel-item">
+                <!-- Second testimonial -->
+                <div class="testimonial-block style-2 gray-bg">
+                    <div class="testimonial-thumb">
+                        <img src="assets2/images/team/test-thumb2.jpg" alt="" class="img-fluid">
+                    </div>
+
+                    <div class="client-info">
+                        <h4 class="text-black">Expert doctors!</h4>
+                        <span class="text-muted">Nedim Khalfaalh</span>
+                        <p class="mb-4 text-black">
+                            Highly skilled medical professionals!
+                        </p>
+                    </div>
+                    <i class="icofont-quote-right"></i>
+                </div>
+            </div>
+
+            <!-- Third testimonial -->
+            <div class="carousel-item">
+                <div class="testimonial-block style-2 gray-bg">
+                    <div class="testimonial-thumb">
+                        <img src="assets2/images/team/test-thumb3.jpg" alt="" class="img-fluid">
+                    </div>
+
+                    <div class="client-info">
+                        <h4 class="text-black">Good Support!</h4>
+                        <span class="text-muted">Ela Ben Dkhil</span>
+                        <p class="mb-4 text-black">
+                            The customer support provided was exceptional, demonstrating efficiency and responsiveness.
+                            It significantly enhanced the overall experience, ensuring any queries or concerns were promptly addressed with a high level of professionalism and care.
+                        </p>
+                    </div>
+                    <i class="icofont-quote-right"></i>
+                </div>
+            </div>
+
+            <!-- Fourth testimonial -->
+            <div class="carousel-item">
+                <div class="testimonial-block style-2 gray-bg">
+                    <div class="testimonial-thumb">
+                        <img src="assets2/images/team/test-thumb4.jpg" alt="" class="img-fluid">
+                    </div>
+
+                    <div class="client-info">
+                        <h4 class="text-black">Nice Environment!</h4>
+                        <span class="text-muted">Manar Nasfi</span>
+                        <p class="mt-4 text-black">
+                            The environment was not only aesthetically pleasing but also created a warm and inviting atmosphere.
+                            It contributed significantly to a positive and comfortable experience, making the overall visit enjoyable and stress-free.
+                        </p>
+                    </div>
+                    <i class="icofont-quote-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add navigation arrows -->
+        <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+</section>
+<section class="section clients">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h2>Partners who support us</h2>
+					<div class="divider mx-auto my-4"></div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row clients-logo">
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/1.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/2.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/3.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/4.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/5.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/6.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/3.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/4.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/5.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="assets2/images/about/6.png" alt="" class="img-fluid">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

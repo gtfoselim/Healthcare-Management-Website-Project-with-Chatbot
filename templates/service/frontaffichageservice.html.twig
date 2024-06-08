@@ -1,0 +1,320 @@
+{% extends 'base2.html.twig'%}
+{% block navbar %}
+
+
+
+
+<nav class="navbar navbar-expand-lg navigation" id="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/pagehome" style="margin-left: -10%;">
+      <img src="{{asset('assets2/images/logo4.png')}}" alt="" class="img-fluid" width="200" height="200">
+  </a>
+  
+
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="icofont-navigation-menu"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarmain">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/pagehome">Home</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{{ path('calculate_imc')}}">LifeStyle</a></li>
+        <li class="nav-item"><a class="nav-link" href="/evenement/front">Events</a></li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service Category<i class="icofont-thin-down"></i></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown02">
+              {%for a in cat %}
+
+              <li><a class="dropdown-item" href="{{path('showidcatservice',{'id_category':a.id})}}"><i class="{{a.icon}}"></i> {{a.nom}}</a></li>
+             
+              {% endfor %}
+          </ul>
+        </li>
+        
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                  <li><a class="dropdown-item" href="/showdoc">Doctors</a></li>
+                  <li><a class="dropdown-item" href="/add">Appoinment</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i class="icofont-thin-down"></i></a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown05">
+                    <li><a class="dropdown-item" href="/post">Blog</a></li>
+
+                    <!-- <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li> -->
+                    <li><a class="dropdown-item" href="/addformpost">Add Post</a></li>
+
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reclamation <i class="icofont-thin-down"></i></a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown05">
+                    <li><a class="dropdown-item" href="/showReclamations">Show Reclamation</a></li>
+
+                    <!-- <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li> -->
+                    <li><a class="dropdown-item" href="/addReclamation">Add Reclamation</a></li>
+
+                </ul>
+              </li>
+              <li class="nav-item dropdown" style="margin-top: -4%;">
+                {% if app.user !=null %}
+               
+                  
+                  <a class="nav-link dropdown-toggle" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="{{ asset('uploads/photos/' ~ app.user.photo) }}" alt="Profile" class="rounded-circle" style="width: 60px; height: 60px; border-radius: 50%;"><i class="icofont-thin-down"></i></a>
+         
+                  <span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.username }}</span>
+        
+  
+                </a><!-- End Profile Iamge Icon -->
+ 
+     
+         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+           <li class="dropdown-header">
+             <h6>{{ app.user.email }}</h6>
+             <span>{{ app.user.roles[0] }}</span>
+           </li>
+           <li>
+             <hr class="dropdown-divider">
+           </li>
+         <li>
+             {% if app.user.roles[0] == 'medecin' %}
+               <a class="dropdown-item d-flex align-items-center" href="{{ path ('profiledoc')}}">
+                 <i class="bi bi-person"></i>
+                 <span>My Profile</span>
+               </a>
+             </li>
+ 
+             {% elseif app.user.roles[0] == 'user' %}
+             <a class="dropdown-item d-flex align-items-center" href="{{ path ('profile')}}">
+                 <i class="bi bi-person"></i>
+                 <span>My Profile</span>
+               </a>
+             </li>
+             <a class="dropdown-item d-flex align-items-center" href="{{ path ('chatbotuser')}}">
+              <i class="bi bi-person"></i>
+              <span>ChatVST</span>
+            </a>
+          </li>
+             {% endif %}
+             {% if app.user.roles[0] == 'medecin' %}
+     <li>
+         <a class="dropdown-item d-flex align-items-center" href="{{ path('showdocuser') }}">
+             <i class="bi bi-people"></i>
+             <span>Display Users</span>
+         </a>
+     </li>
+     {% endif %}
+ 
+           <li>
+             <a class="dropdown-item d-flex align-items-center" href="{{ path ('app_logout')}}">
+               <i class="bi bi-box-arrow-right"></i>
+               <span>Sign Out</span>
+             </a>
+           </li>
+     
+         </ul><!-- End Profile Dropdown Items -->
+       </li>
+       {% endif %}
+         <!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+{% block body %}
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <span class="text-white">ALL</span>
+            <h1 class="text-capitalize mb-5 text-lg">Services</h1>
+  
+            <!-- <ul class="list-inline breadcumb-nav">
+              <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">/</span></li>
+              <li class="list-inline-item"><a href="#" class="text-white-50">All Department</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <section class="section service-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 text-center">
+                <div class="section-title">
+                    <h2>Award winning patient care</h2>
+                    <div class="divider mx-auto my-4"></div>
+                    <p>Award-winning patient care ensures top-tier medical services, emphasizing compassion and excellence in treatment. Our dedicated team consistently surpasses standards to deliver exceptional healthcare experiences.</p>
+                </div>
+            </div>
+        </div>
+<style>
+  .cool-input {
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.cool-input:focus {
+    border-color: dodgerblue;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.cool-input {
+    padding-left: 30px; /* Adjust based on icon size */
+}
+
+.cool-input:focus {
+    padding-left: 30px; /* Adjust based on icon size */
+}
+
+/* Style the icon font (Font Awesome used here) */
+.fa {
+    font-size: 18px;
+}
+
+</style>
+
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search..." class="cool-input">
+  <span class="search-icon"><i class="fa fa-search"></i></span>
+</div>
+        <div id="searchResults">
+            
+       
+        <div class="row">
+          
+            {% for a in service1 %}
+            <style>
+              .card {
+                  transition: transform 0.5s, box-shadow 0.5s, background-color 0.5s;
+                  border-radius: 15px;
+                  overflow: hidden;
+              }
+              .card:hover {
+                  transform: scale(1.05) rotate(3deg);
+                  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+                  background-color: #f8f9fa; /* Change to your desired hover color */
+              }
+              .card-img {
+                  width: 100%;
+                  height: 200px;
+                  object-fit: cover;
+                  border-top-left-radius: 15px;
+                  border-top-right-radius: 15px;
+                  transition: transform 0.5s;
+              }
+              .card:hover .card-img {
+                  transform: scale(1.1);
+              }
+              .card-body {
+                  padding: 20px;
+              }
+              .card-title {
+                  font-size: 18px;
+                  font-weight: bold;
+                  margin: 0;
+                  color: #032c57; /* Initial color */
+                  transition: color 0.3s; /* Add transition effect for color change */
+              }
+              .card:hover .card-title {
+                  color: #dc1853; /* Change color on hover */
+              }
+              .show-more-link {
+                  text-decoration: none;
+                  color: #007bff; /* Change to your desired link color */
+                  transition: color 0.3s;
+              }
+              .show-more-link:hover {
+                  color: #0056b3; /* Change to your desired link hover color */
+              }
+          </style>
+          
+          <div class="col-lg-3 col-md-6">
+            <a href="{{ path('showidservice', {'id': a.id}) }}" class="card mb-5 shadow-sm">
+                <img src="{{ asset('uploads/' ~ a.image) }}" class="card-img" alt="{{ a.nom }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ a.nom }}</h4>
+                    <p class="show-more-link"><i class="fa-solid fa-plus-circle mr-1"></i> Show More</p>
+                    <!-- Add data-nom attribute here -->
+                    <div class="service-nom" data-nom="{{ a.nom }}"></div>
+                </div>
+            </a>
+         </div>
+        
+          
+          
+            {% endfor %}
+        </div>  
+    </div>
+  </div>
+ 
+</section>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#searchInput').on('input', function() {
+        var query = $(this).val().toLowerCase();
+        $('.card').each(function() {
+            var card = $(this);
+            var cardBody = card.find('.card-body');
+            var serviceNomElement = cardBody.find('.service-nom');
+            var cardImage = card.find('.card-img');
+            if (serviceNomElement.length > 0) {
+                var nom = serviceNomElement.data('nom').toLowerCase();
+                if (nom.includes(query)) {
+                    card.fadeIn(300);
+                    cardBody.slideDown(300);
+                    cardImage.slideDown(300);
+                } else {
+                    card.fadeOut(300);
+                    cardBody.slideUp(300);
+                    cardImage.slideUp(300);
+                }
+            }
+        });
+    }); 
+});
+
+
+
+  </script>
+
+{% endblock %}

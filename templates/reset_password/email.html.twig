@@ -1,0 +1,22 @@
+
+{% block body %}
+ <div style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif;">
+                <div style="background-color: #1f9f47; color: #fff; padding: 15px; text-align: center; border-radius: 10px 10px 0 0;">
+                    <h1 style="margin: 0;">Reset Mot de Pass</h1>
+                </div>
+                <div style="padding: 20px;">
+                    <p style="font-size: 18px; color: #333;"> <strong>Cher(e) Utilisateur</strong>,</p>
+                   
+                   
+               
+<p>Pour réinitialiser votre mot de passe, veuillez visiter le lien suivant</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p style="font-size: 16px; color: #555;">Cordialement,</p>
+<p style="font-size: 16px; color: #555;">L\'équipe Visita</p>
+</div>
+</div>
+{% endblock %}

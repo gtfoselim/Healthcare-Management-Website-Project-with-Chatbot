@@ -1,0 +1,25 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{{ form_start(form) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control', 'style': 'height: 40px; font-size: 0.875rem; padding: 5px;'}}) }}
+                {{ form_errors(form.description) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.Evenement) }}
+                {{ form_widget(form.Evenement, {'attr': {'class': 'form-control', 'style': 'height: 40px; font-size: 0.875rem; padding: 5px;'}}) }}
+                {{ form_errors(form.Evenement) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.Medecin) }}
+                {{ form_widget(form.Medecin, {'attr': {'class': 'form-control','value': app.user.email, 'style': 'height: 40px; font-size: 0.875rem; padding: 5px;'}}) }}
+                {{ form_errors(form.Medecin) }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="border-radius: 50px;">{{ button_label|default('Save') }}</button>
+    </div>
+{{ form_end(form) }}

@@ -1,0 +1,22 @@
+<!-- Display older chats -->
+<div class="older-chats">
+    <h3>Older Chats</h3>
+    <ul>
+        {% for chat in older_chats %}
+            <li>{{ chat.message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- User input form -->
+<form method="post" action="{{ path('chat') }}">
+    <label for="user_input">Your Message:</label>
+    <input type="text" id="user_input" name="user_input" required>
+    <button type="submit">Send</button>
+</form>
+
+<!-- Display bot response -->
+<div class="bot-response">
+    <h3>Bot's Response</h3>
+    <p>{{ bot_response }}</p>
+</div>

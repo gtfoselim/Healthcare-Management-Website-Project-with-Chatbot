@@ -1,0 +1,12 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Visita{% endblock %}
+
+{% block body %}
+    <h1>Add new Participant</h1>
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    {{ include('participant/_form.html.twig') }}
+
+  
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base2.html.twig" %}
+
+{% block body %}
+
+<section class="page-title bg-1" style="color: #105f52;">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white"></span>
+          <h1 class="text-capitalize mb-5 text-lg">Submit a post</h1>
+
+          <!-- <ul class="list-inline breadcumb-nav">
+            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">Our blog</a></li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="display: flex;align-items: center;justify-self: center; margin-top: 5%; margin-bottom: 4%;">
+<div class="col-lg-8">
+    <div class="post-wrap mt-5 mt-lg-0 pl-lg-5 "   >
+     <!-- <h2 class="mb-2 title-color">Submit a post</h2> -->
+     {{form_start(f,{attr:{novalidate:'novalidate'}})}}
+     <div class="row">
+         <!-- <div class="col-lg-6">
+             <div class="form-group">
+            </div>
+        </div> -->
+        <div class="col-lg-6">
+            <div class="form-group">
+                {{form_widget(f.title_post,{'type':'textarea','class':'form-control','placeholder':'Post Title','rows':'4'})}}
+                {{ form_errors(f.title_post, {'attr': {'class': 'form-danger'}}) }}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                {{form_widget(f.type_post,{'attr':{'type':'select','class':'form-control'}})}}              
+            </div>
+        </div>
+        
+        
+        
+        
+    </div>
+    <div class="form-group-2 mb-4">
+                    
+                    
+        {{form_widget(f.contenu_post,{'type':'textarea','class':'form-control','placeholder':'Post','rows':'12'})}}
+        {{ form_errors(f.contenu_post, {'attr': {'class': 'form-danger'}}) }}
+                </div>
+                <div style="display: none;">
+                    {{form_widget(f.id_post,{'att':{ 'name':'id post' , 'id':'time', 'type':'text', 'class':'form-control'}})}}
+                    {{ form_errors(f.id_post, {'attr': {'class': 'form-danger'}}) }}
+                    
+                    {{form_widget(f.nb_comments_post)}}
+                    {{form_widget(f.validation_post)}}
+                    {{form_widget(f.makedate_post)}}
+                    {{form_widget(f.likes_post)}}
+                    {{form_widget(f.dislikes_post)}}
+                </div>
+                
+                <div >
+                    <button type="submit" class="btn btn-main btn-round-full">Submit Post <i class="icofont-simple-right ml-2"></i></button>
+                <!-- <i class="icofont-simple-right"> -->
+                    <!-- {{form_widget(f.SUBMITPOST,{'type':'SubmitType','class':'btn btn-main btn-round-full ','placeholder':'SUBMIT POST','label':'SUBMIT POST '})}} -->
+                    
+                    <!-- </i> -->
+                </div>
+                {{form_end(f)}}
+            </form>
+        </div>
+    </div>
+</div>
+<h3 class="mb-4">This article will be posted when an admin validates it.</h3>
+
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participant{% endblock %}
+
+{% block body %}
+    <h1>Participant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ participant.id }}</td>
+            </tr>
+            <tr>
+                <th>DateParticipation</th>
+                <td>{{ participant.dateParticipation ? participant.dateParticipation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ participant.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo iusto perferendis fuga eius! Ab obcaecati dicta quod quibusdam nihil doloribus. Quaerat, enim velit? Inventore cum magni enim voluptatibus numquam esse facilis quod minus praesentium eius culpa repudiandae suscipit, ipsam natus asperiores architecto. Eveniet ratione velit laboriosam necessitatibus sequi optio perspiciatis!
+    <a href="{{ path('app_participant_index') }}">back to list</a>
+
+    <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">edit</a>
+
+    {{ include('participant/_delete_form.html.twig') }}
+{% endblock %}

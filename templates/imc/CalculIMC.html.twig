@@ -1,0 +1,96 @@
+{% extends 'base2.html.twig'%}
+
+{%block body%}
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">Book your </span>
+          <h1 class="text-capitalize mb-5 text-lg">Service</h1>
+
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+  .appointment-wrap {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+</style>
+<section class="appointment section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="mt-3">
+          <div class="feature-icon mb-3">
+            <i class="icofont-support text-lg"></i>
+          </div>
+          <span class="h3">Call for an Emergency Service!</span>
+          <h2 class="text-color mt-3">+84 789 1256 </h2>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="appointment-wrap mt-5 mt-lg-0 pl-lg-5">
+          <h2 class="mb-2 title-color">LIFESTYLE SERVICE</h2>
+          <p class="mb-4">These services can encompass a wide array of offerings, including but not limited to wellness programs, personal coaching, fitness training, nutrition counseling, stress management, beauty treatments, leisure activities, travel planning, and concierge services. </p>
+          {{ form_start(f, {'attr': {'class': 'appointment-form'}}) }}
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form_label(f.poids, 'Weight (in kg)', {'attr': {'class': 'form-label'}}) }}
+                  {{ form_widget(f.poids, {'attr': {'class': 'form-control', 'placeholder': 'Enter your weight'}}) }}
+                  {{ form_errors(f.poids) }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form_label(f.taille, 'Height (in m)', {'attr': {'class': 'form-label'}}) }}
+                  {{ form_widget(f.taille, {'attr': {'class': 'form-control', 'placeholder': 'Enter your height'}}) }}
+                  {{ form_errors(f.taille) }}
+                </div>
+              </div>
+            </div>
+           
+          {{ form_end(f) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock %}

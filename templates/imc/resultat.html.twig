@@ -1,0 +1,1009 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}IMC Result{% endblock %}
+
+{% block body %}
+<style>
+    /* CSS code to change color of <th> element to black */
+    th {
+        color: black;
+    }
+    td {
+        color: black;
+    }
+
+  .card {
+      transition: transform 0.5s, box-shadow 0.5s, background-color 0.5s;
+      border-radius: 15px;
+      overflow: hidden;
+  }
+  .card:hover {
+      transform: scale(1.05) rotate(3deg);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      background-color: #f8f9fa; /* Change to your desired hover color */
+  }
+  .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: transform 0.5s;
+  }
+  .card:hover .card-img {
+      transform: scale(1.1);
+  }
+  .card-body {
+      padding: 20px;
+  }
+  .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      color: #032c57; /* Initial color */
+      transition: color 0.3s; /* Add transition effect for color change */
+  }
+  .card:hover .card-title {
+      color: #dc1853; /* Change color on hover */
+  }
+  .show-more-link {
+      text-decoration: none;
+      color: #007bff; /* Change to your desired link color */
+      transition: color 0.3s;
+  }
+  .show-more-link:hover {
+      color: #0056b3; /* Change to your desired link hover color */
+  }
+  .card:hover {
+    transform: scale(1.1); /* Augmentez la valeur de l'échelle pour un zoom plus important */
+    transition: transform 0.5s; /* Ajoutez une transition pour une animation fluide */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    background-color: #f8f9fa; /* Changez en votre couleur de survol souhaitée */
+}
+.card-img {
+    width: 100%;
+    height: 200px; /* Changez cette valeur selon vos besoins */
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: transform 0.5s;
+}
+
+</style>
+
+
+
+    <h1 class="text-center mb-4">IMC Result</h1>
+    <div class="row justify-content-center">
+            {% if imc < 18.5 %}
+            <div class="col-md-6">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <p class="card-text">Your IMC is : {{ imc|number_format(3, '.', '') }}</p>
+                        <p>Ideal Weight: {{ idealWeight }}</p>
+                        <p class="card-text">Your ideal weight is situated between : {{ idealWeightMin }} kg and {{ idealWeightMax }} kg</p>
+                        <p class="card-text">You are underweight</p>
+                       
+                    </div>
+                </div>
+              </div>
+           
+    
+              
+        </div>
+        <div class="container py-5 h-100" style="color: aqua;" >
+          <div class="row d-flex justify-content-center align-items-center h-100"style="color: aqua;" >
+            <div class="col-md-12 col-xl-10" style="color: aqua;">
+      
+              <div class="card mask-custom" style="color: aqua;">
+                <div class="card-body p-4 text-white" style="color: aqua;">
+      
+                  <div class="text-center pt-3 pb-2" style="color: aqua;">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                      alt="Check" width="60">
+                    <h2 class="my-4"  style="color: black;">Task List</h2>
+                  </div>
+      
+                  <table class="table text-white mb-0" >
+                    <thead>
+                      <tr>
+                        <th scope="col">CHEK</th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Priority</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="fw-normal">
+                        <th>
+                          <label for="alice-checkbox">
+                              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                              alt="avatar 1" style="width: 45px; height: auto;">
+                          </label>
+                          <input type="checkbox" id="alice-checkbox" style="display: none;">
+                         
+                      </th>
+                      
+                        <td class="align-middle">
+                          <span><span style="color: rgb(175, 12, 12);"><strong>Medical consultation :</strong></span>Make sure you see a healthcare professional regularly for proper medical monitoring and to evaluate the underlying causes of your low weight.</span>
+                        </td>
+                        <td class="align-middle">
+                          <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                        </td>
+
+                      </tr>
+                      <tr class="fw-normal">
+                        <th>
+                          <label for="alice-checkbox">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                            alt="avatar 1" style="width: 45px; height: auto;">
+                        </label>
+                        <input type="checkbox" id="alice-checkbox" style="display: none;">
+                        </th>
+                        <td class="align-middle"><span style="color: green;"><strong>Strength training : </strong></span>Encourage yourself to do muscle-strengthening exercises to build muscle mass and improve strength. This may include exercises with free weights, resistance bands, or bodyweight exercises.</td>
+                        <td class="align-middle">
+                          <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                        </td>
+                       
+                      </tr>
+                      <tr class="fw-normal">
+                        <th>
+                          <label for="alice-checkbox">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                            alt="avatar 1" style="width: 45px; height: auto;">
+                        </label>
+                        <input type="checkbox" id="alice-checkbox" style="display: none;">
+                        </th>
+                        <td class="align-middle"><span style="color: rgb(218, 215, 27);"><strong>Tracking progress : </strong></span>Track your progress in terms of weight gain, muscle strength and overall well-being. This can help you stay motivated and adjust your efforts if necessary.</td>
+                        <td class="align-middle">
+                          <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+                        </td>
+                       
+                      </tr>
+                     
+                      <tr class="fw-normal">
+                        <th>
+                          <label for="alice-checkbox">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                            alt="avatar 1" style="width: 45px; height: auto;">
+                        </label>
+                        <input type="checkbox" id="alice-checkbox" style="display: none;">
+                        </th>
+                        <td class=" align-middle"><span style="color: rgb(175, 12, 12);"><strong>Planning Nutritious Meals :</strong></span>Develop calorie and nutrient-dense meal plans to support healthy weight gain. Encourage the inclusion of foods high in protein, healthy fats and complex carbohydrates.</td>
+                        <td class=" align-middle">
+                          <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                        </td>
+                       
+                      </tr>
+
+
+                      <tr class="fw-normal">
+                        <th>
+                          <label for="alice-checkbox">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                            alt="avatar 1" style="width: 45px; height: auto;">
+                        </label>
+                        <input type="checkbox" id="alice-checkbox" style="display: none;">
+                        </th>
+                        <td class=" align-middle"><span style="color: rgb(175, 12, 12);"><strong>Regular medical follow-up: </strong></span> Make sure you continue to see a healthcare professional regularly to monitor your health and weight, and to adjust your weight gain plan if necessary.</td>
+                        <td class=" align-middle">
+                          <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                        </td>
+                       
+                      </tr>
+
+                    </tbody>
+                  </table>
+      
+      
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        
+
+
+        
+    
+
+
+     
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 text-center">
+                    <div class="section-title">
+                        <h2>Let Us Endeavor to Optimize Your Well-being !</h2>
+                        <div class="divider mx-auto my-4"></div>
+                        <p>"These tasks can help maintain a healthy body weight and promote better overall health. It's always important to adapt these suggestions according to the individual's needs and preferences."</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <p>Balanced diet video :</p>
+                    <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet">Eat balanced and nutritious meals</li>
+      
+                    <div class="content">
+                      <h4 class="mt-4 mb-2 title-color">shoulder exercise</h4>
+                      <p class="mb-4">shoulder exercise</p>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+            
+              <div class="col-lg-3 col-md-6">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <p>Balanced diet video :</p>
+                    <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet"> Eat balanced and nutritious meals</li>
+      
+                    <div class="content">
+                      <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                      <p class="mb-4">kkkk</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <p>Balanced diet video :</p>
+                    <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet"> Eat balanced and nutritious meals</li>
+      
+                    <div class="content">
+                      <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                      <p class="mb-4">kkkk</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                               
+              <div class="col-lg-3 col-md-10">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <p>Balanced diet video :</p>
+                    <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet"> Eat balanced and nutritious meals</li>
+      
+                    <div class="content">
+                      <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                      <p class="mb-4">kkkk</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+
+            <section>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="feature-block d-lg-flex">
+                      
+                      <div class="feature-item mb-5 mb-lg-0">
+                        <div class="feature-icon mb-4">
+                          <i class="icofont-support"></i>
+                        </div>
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <p>Balanced diet video :</p>
+                            <video width="320" height="240" controls>
+                              <source src="{{ asset('videos/healthy_food_video.mp4') }}" type="video/mp4">
+                            </video>
+                            <div class="content">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                    
+                      <div class="feature-item mb-5 mb-lg-0">
+                        <div class="feature-icon mb-4">
+                          <i class="icofont-support"></i>
+                        </div>
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <p>Balanced diet video :</p>
+                            <video width="320" height="240" controls>
+                              <source src="{{ asset('videos/healthy_food_video.mp4') }}" type="video/mp4">
+                            </video>
+                            <div class="content">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             </section>
+
+            
+        </div>
+          
+
+
+        {% elseif imc >= 18.5 and imc < 25 %}
+        <div class="col-md-6">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <p class="card-text">Your IMC is : {{ imc|number_format(3, '.', '') }}</p>
+                    <p>Ideal weight: {{ idealWeight }}</p>
+                    <p class="card-text">Your ideal weight is situated between: {{ idealWeightMin }} kg and {{ idealWeightMax }} kg</p>
+                    <p class="card-text">Your weight is normal</p>
+                    
+                </div>
+            </div>
+          </div>
+       
+
+         
+    </div>
+        
+            <div class="container py-5 h-100" style="color: aqua;" >
+              <div class="row d-flex justify-content-center align-items-center h-100"style="color: aqua;" >
+                <div class="col-md-12 col-xl-10" style="color: aqua;">
+          
+                  <div class="card mask-custom" style="color: aqua;">
+                    <div class="card-body p-4 text-white" style="color: aqua;">
+          
+                      <div class="text-center pt-3 pb-2" style="color: aqua;">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                          alt="Check" width="60">
+                        <h2 class="my-4"  style="color: black;">Task List</h2>
+                      </div>
+          
+                      <table class="table text-white mb-0" >
+                        <thead>
+                          <tr>
+                            <th scope="col">CHEK</th>
+                            <th scope="col">Task</th>
+                            <th scope="col">Priority</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="fw-normal">
+                            <th>
+                              <label for="alice-checkbox">
+                                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                                  alt="avatar 1" style="width: 45px; height: auto;">
+                              </label>
+                              <input type="checkbox" id="alice-checkbox" style="display: none;">
+                             
+                          </th>
+                          
+                            <td class="align-middle">
+                              <span><span style="color: rgb(175, 12, 12);"><strong>Healthy Meal Planning : </strong></span>Develop balanced menus that include a variety of nutritious foods such as fruits, vegetables, lean proteins and whole grains.</span>
+                            </td>
+                            <td class="align-middle">
+                              <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                            </td>
+
+                          </tr>
+                          <tr class="fw-normal">
+                            <th>
+                              <label for="alice-checkbox">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                                alt="avatar 1" style="width: 45px; height: auto;">
+                            </label>
+                            <input type="checkbox" id="alice-checkbox" style="display: none;">
+                            </th>
+                            <td class="align-middle"><span style="color: green;"><strong>Nutrition education :</strong></span> Provide information on the basics of nutrition, including portion sizes, reading nutrition labels, and recognizing healthy foods.</td>
+                            <td class="align-middle">
+                              <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                            </td>
+                           
+                          </tr>
+                          <tr class="fw-normal">
+                            <th>
+                              <label for="alice-checkbox">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                                alt="avatar 1" style="width: 45px; height: auto;">
+                            </label>
+                            <input type="checkbox" id="alice-checkbox" style="display: none;">
+                            </th>
+                            <td class="align-middle"><span style="color: rgb(218, 215, 27);"><strong>Avoid restrictive diets :</strong></span> Warn against crash diets that could compromise long-term health</td>
+                            <td class="align-middle">
+                              <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+                            </td>
+                           
+                          </tr>
+                         
+                          <tr class="fw-normal">
+                            <th>
+                              <label for="alice-checkbox">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                                alt="avatar 1" style="width: 45px; height: auto;">
+                            </label>
+                            <input type="checkbox" id="alice-checkbox" style="display: none;">
+                            </th>
+                            <td class=" align-middle"><span style="color: green;"><strong>Practice of stress management :</strong></span>Encourage stress management techniques such as meditation, deep breathing, yoga, or progressive muscle relaxation.</td>
+                            <td class=" align-middle">
+                              <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                            </td>
+                           
+                          </tr>
+                        </tbody>
+                      </table>
+          
+          
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            
+
+
+            
+        
+
+
+         
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <div class="section-title">
+                            <h2>Let Us Endeavor to Optimize Your Well-being !</h2>
+                            <div class="divider mx-auto my-4"></div>
+                            <p>"These tasks can help maintain a healthy body weight and promote better overall health. It's always important to adapt these suggestions according to the individual's needs and preferences."</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p>Balanced diet video :</p>
+                        <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet">Eat balanced and nutritious meals</li>
+          
+                        <div class="content">
+                          <h4 class="mt-4 mb-2 title-color">choulder exercice</h4>
+                          <p class="mb-4">choulder exercice</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                
+                  <div class="col-lg-3 col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p>Balanced diet video :</p>
+                        <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet"> Eat balanced and nutritious meals</li>
+          
+                        <div class="content">
+                          <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                          <p class="mb-4">kkkk</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p>Balanced diet video :</p>
+                        <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet "> Eat balanced and nutritious meals</li>
+          
+                        <div class="content">
+                          <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                          <p class="mb-4">kkkk</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                                   
+                  <div class="col-lg-3 col-md-10">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p>Balanced diet video:</p>
+                        <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet"> Eat balanced and nutritious meals</li>
+          
+                        <div class="content">
+                          <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                          <p class="mb-4">kkkk</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+
+
+                <section>
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="feature-block d-lg-flex">
+                          
+                          <div class="feature-item mb-5 mb-lg-0">
+                            <div class="feature-icon mb-4">
+                              <i class="icofont-support"></i>
+                            </div>
+                            <div class="card mb-4">
+                              <div class="card-body">
+                                <p>Balanced diet video:</p>
+                                <video width="320" height="240" controls>
+                                  <source src="{{ asset('videos/healthy_food_video.mp4') }}" type="video/mp4">
+                                </video>
+                                <div class="content">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                        
+                          <div class="feature-item mb-5 mb-lg-0">
+                            <div class="feature-icon mb-4">
+                              <i class="icofont-support"></i>
+                            </div>
+                            <div class="card mb-4">
+                              <div class="card-body">
+                                <p>Balanced diet video :</p>
+                                <video width="320" height="240" controls>
+                                  <source src="{{ asset('videos/healthy_food_video.mp4') }}" type="video/mp4">
+                                </video>
+                                <div class="content">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                 </section>
+
+                
+            </div>
+      
+        
+        
+           
+        {% elseif imc >= 25 and imc < 30 %}
+        <div class="col-md-6">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <p class="card-text">Your IMC is : {{ imc|number_format(3, '.', '') }}</p>
+                    <p>Ideal weight: {{ idealWeight }}</p>
+                    <p class="card-text">Your ideal weight is situated between : {{ idealWeightMin }} kg and {{ idealWeightMax }} kg</p>
+                    <p class="card-text">You are overweight</p>
+                    
+                </div>
+            </div>
+          </div>
+       
+       </div>
+       <div class="container py-5 h-100" style="color: aqua;" >
+        <div class="row d-flex justify-content-center align-items-center h-100"style="color: aqua;" >
+          <div class="col-md-12 col-xl-10" style="color: aqua;">
+    
+            <div class="card mask-custom" style="color: aqua;">
+              <div class="card-body p-4 text-white" style="color: aqua;">
+    
+                <div class="text-center pt-3 pb-2" style="color: aqua;">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                    alt="Check" width="60">
+                  <h2 class="my-4"  style="color: black;">Task List</h2>
+                </div>
+    
+                <table class="table text-white mb-0" >
+                  <thead>
+                    <tr>
+                      <th scope="col">CHEK</th>
+                      <th scope="col">Task</th>
+                      <th scope="col">Priority</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="fw-normal">
+                      <th>
+                        <label for="alice-checkbox">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                            alt="avatar 1" style="width: 45px; height: auto;">
+                        </label>
+                        <input type="checkbox" id="alice-checkbox" style="display: none;">
+                       
+                    </th>
+                    
+                      <td class="align-middle">
+                        <span><span style="color: rgb(175, 12, 12);"><strong>Healthy Meal Planning : </strong></span>Dvelop balanced menus that include a variety of nutritious foods such as fruits, vegetables, lean proteins and whole grains.</span>
+                      </td>
+                      <td class="align-middle">
+                        <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                      </td>
+
+                    </tr>
+                    <tr class="fw-normal">
+                      <th>
+                        <label for="alice-checkbox">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                          alt="avatar 1" style="width: 45px; height: auto;">
+                      </label>
+                      <input type="checkbox" id="alice-checkbox" style="display: none;">
+                      </th>
+                      <td class="align-middle"><span style="color: green;"><strong>Nutrition education :</strong></span> Provide information on the basics of nutrition, including portion sizes, reading nutrition labels, and recognizing healthy foods.</td>
+                      <td class="align-middle">
+                        <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                      </td>
+                     
+                    </tr>
+                    <tr class="fw-normal">
+                      <th>
+                        <label for="alice-checkbox">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                          alt="avatar 1" style="width: 45px; height: auto;">
+                      </label>
+                      <input type="checkbox" id="alice-checkbox" style="display: none;">
+                      </th>
+                      <td class="align-middle"><span style="color: rgb(218, 215, 27);"><strong>Avoid restrictive diets :</strong></span> Warn against crash diets that could compromise long-term health.</td>
+                      <td class="align-middle">
+                        <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+                      </td>
+                     
+                    </tr>
+                   
+                    <tr class="fw-normal">
+                      <th>
+                        <label for="alice-checkbox">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                          alt="avatar 1" style="width: 45px; height: auto;">
+                      </label>
+                      <input type="checkbox" id="alice-checkbox" style="display: none;">
+                      </th>
+                      <td class=" align-middle"><span style="color: green;"><strong>Practice of stress management :</strong></span>Encourage stress management techniques such as meditation, deep breathing, yoga, or progressive muscle relaxation.</td>
+                      <td class=" align-middle">
+                        <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                      </td>
+                     
+                    </tr>
+                  </tbody>
+                </table>
+    
+    
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      
+
+
+      
+  
+
+
+   
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-7 text-center">
+                  <div class="section-title">
+                      <h2>Let Us Endeavor to Optimize Your Well-being !</h2>
+                      <div class="divider mx-auto my-4"></div>
+                      <p>"These tasks can help maintain a healthy body weight and promote better overall health. It's always important to adapt these suggestions according to the individual's needs and preferences."</p>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p>Balanced diet video:</p>
+                  <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet"> Eat balanced and nutritious meals</li>
+    
+                  <div class="content">
+                    <h4 class="mt-4 mb-2 title-color">choulder exercice</h4>
+                    <p class="mb-4">choulder exercice</p>
+                  </div>
+                </div>
+              </div>
+            </div>  
+          
+            <div class="col-lg-3 col-md-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p>Balanced diet video:</p>
+                  <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet "> Eat balanced and nutritious meals</li>
+    
+                  <div class="content">
+                    <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                    <p class="mb-4">kkkk</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p>Balanced diet video:</p>
+                  <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet "> Eat balanced and nutritious meals</li>
+    
+                  <div class="content">
+                    <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                    <p class="mb-4">kkkk</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                             
+            <div class="col-lg-3 col-md-10">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p>Balanced diet video  :</p>
+                  <li><img src="{{ asset('assets2/images/logo.png') }}" alt="Balanced diet video ">Eat balanced and nutritious meals</li>
+    
+                  <div class="content">
+                    <h4 class="mt-4 mb-2 title-color">vvv</h4>
+                    <p class="mb-4">kkkk</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+
+          <section>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="feature-block d-lg-flex">
+                    
+                    <div class="feature-item mb-5 mb-lg-0">
+                      <div class="feature-icon mb-4">
+                        <i class="icofont-support"></i>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-body">
+                          <p>Balanced diet video :</p>
+                          <video width="320" height="240" controls>
+                            <source src="{{ asset('videos/healthy_food_video.mp4') }}" type="video/mp4">
+                          </video>
+                          <div class="content">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                  
+                    <div class="feature-item mb-5 mb-lg-0">
+                      <div class="feature-icon mb-4">
+                        <i class="icofont-support"></i>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-body">
+                          <p>Balanced diet video  :</p>
+                          <video width="320" height="240" controls>
+                            <source src="{{ asset('videos/healthy_food_video.mp4') }}" type="video/mp4">
+                          </video>
+                          <div class="content">
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </section>
+
+          
+      </div>
+           
+        {% else %}
+        <div class="col-md-6">
+          <div class="card bg-danger text-white">
+            <div class="card-body">
+              <p class="card-text">Your IMC is : {{ imc|number_format(3, '.', '') }}</p>
+              <p>Ideal weight: {{ idealWeight }}</p>
+              <p class="card-text">Your ideal weight is situated between : {{ idealWeightMin }} kg and {{ idealWeightMax }} kg</p>
+              <p class="card-text">You are obese</p>
+              
+          </div>
+          </div>
+        </div>
+     
+     </div>
+     <div class="container py-5 h-100" style="color: aqua;" >
+      <div class="row d-flex justify-content-center align-items-center h-100"style="color: aqua;" >
+        <div class="col-md-12 col-xl-10" style="color: aqua;">
+  
+          <div class="card mask-custom" style="color: aqua;">
+            <div class="card-body p-4 text-white" style="color: aqua;">
+  
+              <div class="text-center pt-3 pb-2" style="color: aqua;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                  alt="Check" width="60">
+                <h2 class="my-4"  style="color: black;">Task List</h2>
+              </div>
+  
+              <table class="table text-white mb-0" >
+                <thead>
+                  <tr>
+                    <th scope="col">CHEK</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="fw-normal">
+                    <th>
+                      <label for="alice-checkbox">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                          alt="avatar 1" style="width: 45px; height: auto;">
+                      </label>
+                      <input type="checkbox" id="alice-checkbox" style="display: none;">
+                     
+                  </th>
+                  
+                    <td class="align-middle">
+                      <span><span style="color: rgb(175, 12, 12);"><strong>Medical consultation : </strong></span> Make sure you see a healthcare professional regularly for proper medical monitoring and advice on weight management.</span>
+                    </td>
+                    <td class="align-middle">
+                      <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                    </td>
+
+                  </tr>
+                  <tr class="fw-normal">
+                    <th>
+                      <label for="alice-checkbox">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                        alt="avatar 1" style="width: 45px; height: auto;">
+                    </label>
+                    <input type="checkbox" id="alice-checkbox" style="display: none;">
+                    </th>
+                    <td class="align-middle"><span style="color: rgb(175, 12, 12);"><strong>Balanced meal plan :</strong></span>Develop balanced and nutritious meal plans that promote weight loss in a healthy and sustainable way. Encourage the consumption of foods high in fiber, lean protein, and vegetables, and limit processed foods and foods high in empty calories.</td>
+                    <td class="align-middle">
+                      <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                    </td>
+                   
+                  </tr>
+                  <tr class="fw-normal">
+                    <th>
+                      <label for="alice-checkbox">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                        alt="avatar 1" style="width: 45px; height: auto;">
+                    </label>
+                    <input type="checkbox" id="alice-checkbox" style="display: none;">
+                    </th>
+                    <td class="align-middle"><span style="color: rgb(218, 215, 27);"><strong>Avoid restrictive diets:</strong></span> Warn against crash diets that could compromise long-term health.</td>
+                    <td class="align-middle">
+                      <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+                    </td>
+                   
+                  </tr>
+                 
+                  <tr class="fw-normal">
+                    <th>
+                      <label for="alice-checkbox">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="checkbox"
+                        alt="avatar 1" style="width: 45px; height: auto;">
+                    </label>
+                    <input type="checkbox" id="alice-checkbox" style="display: none;">
+                    </th>
+                    <td class=" align-middle"><span style="color: green;"><strong>Practice of stress management :</strong></span>Encourage stress management techniques such as meditation, deep breathing, yoga, or progressive muscle relaxation.</td>
+                    <td class=" align-middle">
+                      <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                    </td>
+                   
+                  </tr>
+                </tbody>
+              </table>
+  
+  
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+ 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 text-center">
+                <div class="section-title">
+                    <h2>Let Us Endeavor to Optimize Your Well-being !</h2>
+                    <div class="divider mx-auto my-4"></div>
+                    <p>"These tasks can help maintain a healthy body weight and promote better overall health. It's always important to adapt these suggestions according to the individual's needs and preferences."</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+        
+        
+          <div class="col-lg-3 col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+               
+                <li><img src="{{ asset('assets2/imgimc/ob5.jpg' ) }}" alt="Balanced diet" class="img-fluid" width="200" height="200"> </li>
+  
+              
+              </div>
+            </div>
+          </div>
+        
+
+         
+                           
+          <div class="col-lg-3 col-md-10">
+            <div class="card mb-4">
+                <div class="card-body">
+                   
+                    <li>
+                        <img class="card-img" src="{{ asset('assets2/imgimc/ob1.jpg') }}" alt="Balanced diet">
+                    </li>
+        
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-10">
+          <div class="card mb-4">
+              <div class="card-body">
+                 
+                  <li>
+                      <img class="card-img" src="{{ asset('assets2/imgimc/ob2.jpg') }}" alt="Balanced diet">
+                  </li>
+      
+              </div>
+          </div>
+      </div>
+        
+        
+
+
+        <section>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="feature-block d-lg-flex">
+                  
+                  <div class="feature-item mb-5 mb-lg-0">
+                   
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p> obesity the little thing : </p>
+                        <video width="320" height="240" controls>
+                          <source src="{{ asset('videos/v2.mp4') }}" type="video/mp4">
+                        </video>
+                        <div class="content">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+                
+                  <div class="feature-item mb-5 mb-lg-0">
+                   
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p> A healthy Diet ,a Healthier World :</p>
+                        <video width="320" height="240" controls>
+                          <source src="{{ asset('videos/v1.mp4') }}" type="video/mp4">
+                        </video>
+                        <div class="content">
+                  </div>
+                </div>
+              </div>
+            </div>
+         </section>
+
+        
+    </div>
+        {% endif %}
+   
+    
+
+{% endblock %}

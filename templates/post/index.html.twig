@@ -1,0 +1,233 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+	.overlay:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    background: #105f52;
+}
+.btn-main {
+    background: #105f52;
+    color: #fff;
+    border-color: #105F53;
+}
+</style>
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <span class="text-white">Our blog</span>
+            <h1 class="text-capitalize mb-5 text-lg">Blog articles</h1>
+  
+            <!-- <ul class="list-inline breadcumb-nav">
+              <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">/</span></li>
+              <li class="list-inline-item"><a href="#" class="text-white-50">Our blog</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section blog-wrap">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8">
+                  <div class="row">
+                    {% for i in pagination %}
+	<div class="col-lg-12 col-md-12 mb-5">
+		<div class="blog-item">
+			<div class="blog-thumb">
+				<img src="images/blog/blog-1.jpg" alt="" class="img-fluid ">
+			</div>
+
+			<div class="blog-item-content">
+				<div class="blog-item-meta mb-3 mt-4">
+					<span class="text-color-2 text-capitalize mr-3"><i class="icofont-book-mark mr-2"></i>{{i.TypePost}}</span>
+					<span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i>{{i.MakedatePost.format('Y-m-d')}}</span>
+					<span class="text-muted text-capitalize mr-3"><i class="icofont-comment mr-2"></i>{{i.NbCommentsPost}} Comments</span>
+					<span class="likes-icon" style="margin-left: 5px;color: rgb(99, 145, 111);"><i class="fas fa-thumbs-up"></i></span>
+					<span class="likes-count" style="font-weight: bold; color: #007bff;">{{i.LikesPost}}</span> Likes
+					<span style="margin-left: 5px;color: rgb(150, 105, 111);"><i class="fas fa-thumbs-down"></i></span>
+					<span style="font-weight: bold;color: #dc3545;">{{i.DislikesPost}}</span> DisLikes
+				</div> 
+
+				<h2 class="mt-3 mb-3"><a href="{{path('postsingle',{'id':i.id})}}">{{i.TitlePost}}</a></h2>
+
+				<p class="mb-4">{{i.ContenuPost}}</p>
+
+				<a href="{{path('postsingle',{'id':i.id})}}" target="_blank" class="btn btn-main btn-icon btn-round-full" >Read More <i class="icofont-simple-right ml-2  "></i></a>
+			</div>
+		</div>
+	</div>
+
+    {% endfor %}
+</div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
+					<div class="sidebar-widget search mb-3">
+						<h5>Advanced Search</h5>
+						<form id="advanced-search-form">
+							<div class="form-group">
+								<input type="text" class="form-control" id="keyword" placeholder="Keyword">
+							</div>
+							<div class="form-group">
+								<input type="date" class="form-control" id="date" placeholder="Date">
+							</div>
+							<div class="form-group">
+								<select class="form-control" id="category">
+									<option value="">None</option>
+									<option value="Medicine">Medicine</option>
+									<option value="Equipments">Equipments</option>
+									<option value="Heart">Heart</option>
+									<option value="Free counselling">Free counselling</option>
+									<option value="Lab test">Lab test</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Search</button>
+						</form>
+					</div>
+
+	
+
+	<div class="sidebar-widget category mb-3">
+		<h5 class="mb-4">Categories</h5>
+
+		<ul class="list-unstyled">
+		  <li class="align-items-center">
+		    <a href="/postmed">Medicine</a>
+		    <span>({{nummed}})</span>
+		  </li>
+		  <li class="align-items-center">
+		    <a href="/postEquipments">Equipments</a>
+		    <span>({{numequip}})</span>
+		  </li>
+		  <li class="align-items-center">
+		    <a href="/postHeart">Heart</a>
+		    <span>({{numhart}})</span>
+		  </li>
+		  <li class="align-items-center">
+		    <a href="/postFreecounselling">Free counselling</a>
+		    <span>({{numcouns}})</span>
+		  </li>
+		  <li class="align-items-center">
+		    <a href="/postlab">Lab test</a>
+		    <span>({{numlab}})</span>
+		  </li>
+		</ul>
+	</div>
+
+
+
+
+</div>
+            </div>   
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-8">
+                <nav class="pagination py-2 d-inline-block">
+						<div class="col-lg-8" >
+							<nav class="pagination py-2 d-inline-block">
+								<div class="nav-links"style="display: flex;">
+									{% if pagination.currentPageNumber > 1 %}
+										<a class="page-numbers" href="{{ path('app_post', {'page': 1}) }}">First</a>
+										<a class="page-numbers" href="{{ path('app_post', {'page': pagination.currentPageNumber - 1}) }}">Prev</a>
+									{% else %}
+										<span class="page-numbers disabled">First</span>
+										<span class="page-numbers disabled">Prev </span>
+									{% endif %}
+						
+									{% for page in range(1, pagination.pageCount) %}
+										{% if pagination.currentPageNumber == page %}
+											<span aria-current="page" class="page-numbers current">{{ page }}</span>
+										{% else %}
+											<a class="page-numbers" href="{{ path('app_post', {'page': page}) }}">{{ page }}</a>
+										{% endif %}
+									{% endfor %}
+						
+									{% if pagination.currentPageNumber < pagination.pageCount %}
+										<a class="page-numbers" href="{{ path('app_post', {'page': pagination.currentPageNumber + 1}) }}">Next</a>
+										<a class="page-numbers" href="{{ path('app_post', {'page': pagination.pageCount}) }}">Last</a>
+									{% else %}
+										<span class="page-numbers disabled">Next</span>
+										<span class="page-numbers disabled">Last</span>
+									{% endif %}
+								</div>
+							</nav>
+						</div>
+						
+						
+						
+						
+						
+
+
+
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('advanced-search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form inputs
+            var keyword = document.getElementById('keyword').value.trim().toLowerCase();
+            var date = document.getElementById('date').value.trim(); // Get the date value
+            var category = document.getElementById('category').value.trim().toLowerCase();
+            
+            // Perform search based on form inputs
+            performSearch(keyword, date, category);
+        });
+        
+        function performSearch(keyword, date, category) {
+            // Loop through each item in the table
+            var items = document.querySelectorAll('.blog-item');
+            items.forEach(function(item) {
+                var title = item.querySelector('h2').textContent.toLowerCase();
+                var dateElement = item.querySelector('.icofont-calendar').nextSibling.textContent.trim(); // Get the date value from the HTML
+                var categoryElement = item.querySelector('.icofont-book-mark').nextSibling.textContent.trim().toLowerCase(); // Get the category value from the HTML
+                
+                // Perform search filtering
+                var matchesKeyword = title.includes(keyword);
+                var matchesDate = dateElement.includes(date); // Check if the date matches
+                var matchesCategory = categoryElement.includes(category);
+                
+                // Hide or show the item based on search results
+                if (matchesKeyword && matchesDate && matchesCategory) {
+                    item.style.display = ''; // Show the item
+                } else {
+                    item.style.display = 'none'; // Hide the item
+                }
+            });
+        }
+    });
+</script>
+  
+
+
+
+
+
+{% endblock %}
